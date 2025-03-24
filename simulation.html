@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Симуляція</title>
+    <style>
+        /* Загальні стилі для сторінки */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #4b4b4b;
+        }
+        
+        /* Стилі для шапки сайту */
+        header {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Іконка меню в лівій частині шапки */
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Навігаційні елементи в центрі шапки */
+        .nav-items {
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* Стиль для кожного елемента навігації */
+        .nav-item {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        /* Логотип у правій частині шапки */
+        .logo {
+            width: 40px;
+            height: 40px;
+        }
+        
+        /* Основний контейнер для контенту */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 40px;
+            height: calc(100vh - 140px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Стиль для заголовка симуляції */
+        .title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+        
+        /* Стиль для блоку з питанням */
+        .question-box {
+            background-color: #e6e6e6;
+            padding: 30px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Стиль для заголовка питання */
+        .question-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        /* Контейнер для варіантів відповідей */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Стиль для кожного варіанту відповіді */
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+        
+        /* Стиль для радіо-кнопок */
+        .option input {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* Контейнер для кнопки "Далі" */
+        .next-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Стиль для кнопки "Далі" */
+        .next-button button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 36px;
+            color: darkgreen;
+        }
+        
+        /* Базовий стиль для всіх фреймів (всі приховані за замовчуванням) */
+        .frame {
+            display: none;
+        }
+        
+        /* Стиль для активного фрейма */
+        .frame.active {
+            display: block;
+        }
+        
+        /* Стиль для блоку результатів */
+        .results {
+            background-color: #e6e6e6;
+            padding: 30px;
+            border-radius: 5px;
+        }
+        
+        /* Стиль для заголовку результатів */
+        .results-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2a6d2a;
+        }
+        
+        /* Стиль для тексту результатів */
+        .results-text {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        /* Стиль для оцінки в результатах */
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2a6d2a;
+            margin-top: 20px;
+        }
+        
+        /* Коментар для розробників */
+        .developer-note {
+            background-color: #fff4e5;
+            border: 1px solid #ffd89e;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту з навігацією -->
+    <header>
+        <div class="menu-icon">☰</div>
+        <div class="nav-items">
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+        </div>
+        <div class="logo">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 0L24 16H36L26 26L30 40L20 30L10 40L14 26L4 16H16L20 0Z" fill="white" stroke="black"/>
+            </svg>
+        </div>
+    </header>
+    
+    <!-- Основний контейнер для контенту -->
+    <div class="container">
+        <h1 class="title">Симуляція</h1>
+        
+        <!-- Фрейм 1 - Початкове питання -->
+        <div class="frame active" id="frame1">
+            <div class="question-box">
+                <h2 class="question-title">Питання</h2>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1" value="1" onclick="selectOption(1)">
+                        <span>Дія 1</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="2" onclick="selectOption(2)">
+                        <span>Дія 2</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="3" onclick="selectOption(3)">
+                        <span>Дія 3</span>
+                    </label>
+                </div>
+                <div class="next-button">
+                    <button onclick="nextFrame()">→</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Фрейм 2 - Для Опції 1 -->
+        <div class="frame" id="frame2">
+            <div class="question-box">
+                <h2 class="question-title">Результат Дії 1</h2>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2" value="1" onclick="selectOption(11)">
+                        <span>Варіант 1.1</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="2" onclick="selectOption(12)">
+                        <span>Варіант 1.2</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="3" onclick="selectOption(13)">
+                        <span>Варіант 1.3</span>
+                    </label>
+                </div>
+                <div class="next-button">
+                    <button onclick="nextFrame()">→</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Фрейм 3 - Для Опції 2 -->
+        <div class="frame" id="frame3">
+            <div class="question-box">
+                <h2 class="question-title">Результат Дії 2</h2>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3" value="1" onclick="selectOption(21)">
+                        <span>Варіант 2.1</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="2" onclick="selectOption(22)">
+                        <span>Варіант 2.2</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="3" onclick="selectOption(23)">
+                        <span>Варіант 2.3</span>
+                    </label>
+                </div>
+                <div class="next-button">
+                    <button onclick="nextFrame()">→</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Фрейм 4 - Для Опції 3 -->
+        <div class="frame" id="frame4">
+            <div class="question-box">
+                <h2 class="question-title">Результат Дії 3</h2>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4" value="1" onclick="selectOption(31)">
+                        <span>Варіант 3.1</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="2" onclick="selectOption(32)">
+                        <span>Варіант 3.2</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="3" onclick="selectOption(33)">
+                        <span>Варіант 3.3</span>
+                    </label>
+                </div>
+                <div class="next-button">
+                    <button onclick="nextFrame()">→</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Фрейм 5 - Сторінка результатів -->
+        <div class="frame" id="frame5">
+            <div class="results">
+                <h2 class="results-title">Результати симуляції</h2>
+                <div class="results-text" id="results-content">
+                    <!-- Тут буде текст результатів залежно від вибраних відповідей -->
+                </div>
+                <div class="score" id="score-display">
+                    <!-- Тут буде числова оцінка або інший підсумок -->
+                </div>
+                
+                <!-- Блок для розробників - легко модифікувати шаблони результатів -->
+                <div class="developer-note">
+                    <h3>Інформація для розробників:</h3>
+                    <p>Щоб змінити шаблони результатів для різних комбінацій відповідей, 
+                       відредагуйте функцію getResultTemplate() в JavaScript коді нижче.</p>
+                    <p>Кожна комбінація має свій код, наприклад: 11 = перше питання відповідь 1 + 
+                       друге питання відповідь 1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Змінні для відстеження стану симуляції
+        let currentFrame = 1;  // Поточний активний фрейм
+        let selectedOption = null;  // Вибраний варіант відповіді
+        let userPath = [];  // Шлях користувача (всі вибрані відповіді)
+        
+        /**
+         * Обробляє вибір опції користувачем
+         * @param {number} option - Код обраної опції
+         */
+        function selectOption(option) {
+            selectedOption = option;
+        }
+        
+        /**
+         * Переходить до наступного фрейму відповідно до вибраної опції
+         */
+        function nextFrame() {
+            // Перевіряємо, чи користувач вибрав варіант відповіді
+            if (!selectedOption) return;
+            
+            // Додаємо вибір до шляху користувача
+            userPath.push(selectedOption);
+            
+            // Визначаємо, який буде наступний фрейм
+            let nextFrameId;
+            
+            if (currentFrame === 1) {
+                // Якщо це перше питання, переходимо до відповідного фрейму (2, 3 або 4)
+                nextFrameId = selectedOption + 1;  // +1 тому що фрейми починаються з номера 2
+            } else {
+                // Якщо це друге питання, переходимо до фрейму результатів
+                nextFrameId = 5;  // Фрейм з результатами
+                // Генеруємо результати на основі відповідей користувача
+                generateResults();
+            }
+            
+            // Змінюємо видимість фреймів
+            document.getElementById('frame' + currentFrame).classList.remove('active');
+            document.getElementById('frame' + nextFrameId).classList.add('active');
+            
+            // Оновлюємо поточний фрейм
+            currentFrame = nextFrameId;
+            selectedOption = null;
+        }
+        
+        /**
+         * Генерує результати на основі відповідей користувача
+         */
+        function generateResults() {
+            // Отримуємо індекси вибраних опцій
+            const firstChoice = userPath[0];  // Перший вибір (1, 2 або 3)
+            const secondChoice = userPath[1]; // Другий вибір (11-13, 21-23, 31-33)
+            
+            // Створюємо код результату, який відповідає комбінації вибраних опцій
+            const resultCode = "" + firstChoice + (secondChoice % 10);
+            
+            // Отримуємо шаблон результату на основі коду
+            const resultTemplate = getResultTemplate(resultCode);
+            
+            // Заповнюємо блок результатів
+            document.getElementById('results-content').innerHTML = resultTemplate.text;
+            document.getElementById('score-display').innerHTML = 'Ваша оцінка: ' + resultTemplate.score + ' / 100';
+        }
+        
+        /**
+         * Повертає шаблон результату для конкретного коду результату
+         * @param {string} code - Код результату (комбінація вибраних опцій)
+         * @return {Object} Об'єкт з текстом результату та оцінкою
+         */
+        function getResultTemplate(code) {
+            // Це місце для редагування розробниками - тут можна змінити шаблони результатів
+            const templates = {
+                // Шаблони для першого вибору (Дія 1)
+                "11": {
+                    text: "<p>Ви обрали <strong>Дію 1</strong> та <strong>Варіант 1.1</strong>.</p>" +
+                          "<p>Ваше рішення демонструє аналітичний підхід та увагу до деталей. " +
+                          "Ви вмієте знаходити оптимальні рішення в складних ситуаціях.</p>",
+                    score: 85
+                },
+                "12": {
+                    text: "<p>Ви обрали <strong>Дію 1</strong> та <strong>Варіант 1.2</strong>.</p>" +
+                          "<p>Ваше рішення свідчить про креативний підхід та здатність " +
+                          "знаходити нестандартні рішення проблем.</p>",
+                    score: 80
+                },
+                "13": {
+                    text: "<p>Ви обрали <strong>Дію 1</strong> та <strong>Варіант 1.3</strong>.</p>" +
+                          "<p>Ваше рішення вказує на систематичний підхід та методичність " +
+                          "у вирішенні проблем.</p>",
+                    score: 75
+                },
+                
+                // Шаблони для другого вибору (Дія 2)
+                "21": {
+                    text: "<p>Ви обрали <strong>Дію 2</strong> та <strong>Варіант 2.1</strong>.</p>" +
+                          "<p>Ваше рішення демонструє лідерські якості та здатність " +
+                          "брати на себе відповідальність у складних ситуаціях.</p>",
+                    score: 90
+                },
+                "22": {
+                    text: "<p>Ви обрали <strong>Дію 2</strong> та <strong>Варіант 2.2</strong>.</p>" +
+                          "<p>Ваше рішення свідчить про командний дух та вміння " +
+                          "ефективно співпрацювати з іншими.</p>",
+                    score: 85
+                },
+                "23": {
+                    text: "<p>Ви обрали <strong>Дію 2</strong> та <strong>Варіант 2.3</strong>.</p>" +
+                          "<p>Ваше рішення вказує на стратегічне мислення та здатність " +
+                          "передбачати довгострокові наслідки.</p>",
+                    score: 80
+                },
+                
+                // Шаблони для третього вибору (Дія 3)
+                "31": {
+                    text: "<p>Ви обрали <strong>Дію 3</strong> та <strong>Варіант 3.1</strong>.</p>" +
+                          "<p>Ваше рішення демонструє практичний підхід та орієнтацію " +
+                          "на конкретні результати.</p>",
+                    score: 70
+                },
+                "32": {
+                    text: "<p>Ви обрали <strong>Дію 3</strong> та <strong>Варіант 3.2</strong>.</p>" +
+                          "<p>Ваше рішення свідчить про інноваційний підхід та готовність " +
+                          "експериментувати з новими ідеями.</p>",
+                    score: 95
+                },
+                "33": {
+                    text: "<p>Ви обрали <strong>Дію 3</strong> та <strong>Варіант 3.3</strong>.</p>" +
+                          "<p>Ваше рішення вказує на обережний підхід та здатність " +
+                          "мінімізувати ризики в непевних ситуаціях.</p>",
+                    score: 75
+                }
+            };
+            
+            // Повертаємо шаблон для конкретного коду або стандартний шаблон
+            return templates[code] || {
+                text: "<p>Дякуємо за участь у симуляції!</p>",
+                score: 50
+            };
+        }
+    </script>
+</body>
+</html>
