@@ -7,7 +7,7 @@
     <style>
         /* Загальні стилі для сторінки */
         body {
-            font-family: Arial, sans-serif;
+            font-family: "IBM Plex Mono", monospace;
             margin: 0;
             padding: 0;
             background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
@@ -201,17 +201,24 @@
             margin: 25px 0;
         }
         .footer-copyright {
-        font-size: 12px;
-        color: #666;
-        text-align: right; /* Вирівнювання тексту по правому краю */
-        position: absolute; /* Абсолютне позиціонування */
-        bottom: -860px; /* Відступ від низу футера */
-        right: 20px; /* Відступ від правого краю футера */
+            font-size: 12px;
+            color: #666;
+            text-align: center; /* Центрування тексту */
+            margin-top: 10px;
+            position: relative; /* Відносне позиціонування */
         }
+        /* .footer-copyright {
+            font-size: 12px;
+            color: #666;
+            text-align: right; /* Вирівнювання тексту по правому краю */
+            /* position: absolute; Абсолютне позиціонування */
+            /* bottom: -890px; Відступ від низу футера */
+            /* right: 20px; Відступ від правого краю футера */
+        /* } */
         .section-line {
-        border: none;
-        border-top: 2px solid #ddd;
-        margin: 20px 0;
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 20px 0;
         }
 
         /* Стиль для основного тексту */
@@ -314,10 +321,10 @@
                 <div class="footer-item">ПРО НАС</div>
                 <div class="footer-item">МАПА САЙТУ</div>
             </div>
-        </div>
-        <hr class="footer-line">
-        <div class="footer-copyright">
-            © 2025 УКУ Всі права захищено
+            <hr class="footer-line">
+            <div class="footer-copyright">
+                © 2025 УКУ Всі права захищено
+            </div>
         </div>
     </footer>
 </body>
