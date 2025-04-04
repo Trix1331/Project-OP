@@ -165,17 +165,10 @@
         }
 
         .footer-item {
-        font-size: 14px;
-        color: #333;
-        margin: 10px 0;
-        text-decoration: none; /* Прибрати підкреслення */
-        cursor: pointer; /* Змінити курсор на "руку" */
-        transition: color 0.3s ease; /* Плавний перехід кольору */
-    }
-
-    .footer-item:hover {
-        color: #2a6d2a; /* Зелений колір при наведенні */
-    }
+            font-size: 14px;
+            color: #333;
+            margin: 10px 0;
+        }
 
         .footer-line {
             width: 100%;
@@ -183,18 +176,28 @@
             border-top: 1px solid #ddd;
             margin: 25px 0;
         }
-        .footer-copyright {
-        font-size: 12px;
-        color: #666;
-        text-align: right; /* Вирівнювання тексту по правому краю */
-        position: absolute; /* Абсолютне позиціонування */
-        bottom: -840px; /* Відступ від низу футера */
-        right: 20px; /* Відступ від правого краю футера */
+        .footer-item:hover {
+        color: #2a6d2a; /* Зелений колір при наведенні */
         }
+        .footer-copyright {
+            font-size: 12px;
+            color: #666;
+            text-align: center; /* Центрування тексту */
+            margin-top: 10px;
+            position: relative; /* Відносне позиціонування */
+        }
+        /* .footer-copyright {
+            font-size: 12px;
+            color: #666;
+            text-align: right; /* Вирівнювання тексту по правому краю */
+            /* position: absolute; Абсолютне позиціонування */
+            /* bottom: -890px; Відступ від низу футера */
+            /* right: 20px; Відступ від правого краю футера */
+        /* } */
         .section-line {
-        border: none;
-        border-top: 2px solid #ddd;
-        margin: 20px 0;
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 20px 0;
         }
 
         /* Стиль для основного тексту */
@@ -390,19 +393,19 @@
     <footer>
         <div class="footer-container">
             <div class="footer-row">
-                <a href="#resources" class="footer-item">РЕСУРСИ</a>
-                <a href="#resources" class="footer-item">РЕСУРСИ</a>
-                <a href="#about" class="footer-item">ПРО НАС</a>
+                <div class="footer-item">РЕСУРСИ</div>
+                <div class="footer-item">РЕСУРСИ</div>
+                <div class="footer-item">ПРО НАС</div>
             </div>
             <div class="footer-row">
-                <a href="#sitemap" class="footer-item">МАПА САЙТУ</a>
-                <a href="#about" class="footer-item">ПРО НАС</a>
-                <a href="#sitemap" class="footer-item">МАПА САЙТУ</a>
+                <div class="footer-item">МАПА САЙТУ</div>
+                <div class="footer-item">ПРО НАС</div>
+                <div class="footer-item">МАПА САЙТУ</div>
             </div>
-        </div>
-        <hr class="footer-line">
-        <div class="footer-copyright">
-            © 2025 УКУ Всі права захищено
+            <hr class="footer-line">
+            <div class="footer-copyright">
+                © 2025 УКУ Всі права захищено
+            </div>
         </div>
     </footer>
     <script>
