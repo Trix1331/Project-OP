@@ -1,0 +1,17 @@
+/* static/css/main.css */
+body {
+    font-family: "IBM Plex Mono", monospace;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+}
+
+.container {
+    max-width: 800px;
+    margin: 90px auto;
+    background-color: white;
+    padding: 40px;
+    min-height: calc(100vh - 160px);
+}
+
+/* Стилі з ваших HTML-файлів */
