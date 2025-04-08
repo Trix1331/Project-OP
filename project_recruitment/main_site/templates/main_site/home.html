@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Головна - Дослідження рекрутингу в українську армію{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: "IBM Plex Mono", monospace;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 90px auto;
+        background-color: white;
+        padding: 40px;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .title {
+        text-align: left;
+        font-size: 60px;
+        margin-bottom: 40px;
+        color: #000000;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-left: 50px;
+    }
+    
+    .section-line {
+        border: none;
+        border-top: 2px solid #ddd;
+        margin: 20px 0;
+    }
+    
+    .authors-section {
+        text-align: left;
+        margin-top: 40px;
+        padding-left: 45px;
+        margin-bottom: 40px;
+    }
+    
+    .authors-title {
+        font-size: 20px;
+        color: #2a6d2a;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    
+    .authors-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-align: left;
+    }
+    
+    .author-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    
+    .author-name {
+        font-size: 16px;
+        color: #333;
+    }
+    
+    .content {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+    }
+    
+    .content p {
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="title">
+    Дослідження<br>
+    рекрутингу в<br>
+    українську армію
+</h1>
+
+<hr class="section-line">
+
+<div class="authors-section">
+    <h2 class="authors-title">Автори:</h2>
+    <div class="authors-container">
+        <div class="author">
+            <img src="{% static 'images/vitya.jpg' %}" class="author-photo" alt="Сиротюк Віктор">
+            <p class="author-name">Сиротюк Віктор</p>
+        </div>
+        <div class="author">
+            <img src="{% static 'images/temp_misha.jpg' %}" class="author-photo" alt="Британ Михайло">
+            <p class="author-name">Британ Михайло</p>
+        </div>
+        <div class="author">
+            <img src="{% static 'images/darynka.jpg' %}" class="author-photo" alt="Онопрієнко Дарина">
+            <p class="author-name">Онопрієнко Дарина</p>
+        </div>
+        <div class="author">
+            <img src="{% static 'images/andrii.jpg' %}" class="author-photo" alt="Говоров Андрій">
+            <p class="author-name">Говоров Андрій</p>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>Наше дослідження спрямоване на аналіз і вдосконалення процесів рекрутингу до української армії. В умовах сучасних викликів ефективне залучення та підготовка військових кадрів є критично важливим завданням для національної безпеки.</p>
+    
+    <p>Дослідження включає аналіз існуючих методик рекрутингу, їх ефективність, а також надає рекомендації щодо вдосконалення процесу набору, відбору та підготовки військовослужбовців. Особлива увага приділяється психологічним аспектам рекрутингу, мотивації потенційних кандидатів та створенню привабливого іміджу військової служби.</p>
+    
+    <p>На цьому сайті ви знайдете детальні інструкції щодо процесу вступу до армії, корисні симуляції різних ситуацій, а також можливість залишити свій відгук та пропозиції щодо покращення системи рекрутингу.</p>
+</div>
+{% endblock %}

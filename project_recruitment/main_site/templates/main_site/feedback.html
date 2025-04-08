@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Відгук - Дослідження рекрутингу в українську армію{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: "IBM Plex Mono", monospace;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 90px auto;
+        background-color: white;
+        padding: 40px;
+        min-height: calc(100vh - 200px);
+    }
+    
+    .title {
+        font-size: 36px;
+        color: #000000;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .feedback-description {
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+    
+    .feedback-form {
+        background-color: #f8f8f8;
+        padding: 30px;
+        border-radius: 8px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #2a6d2a;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 16px;
+    }
+    
+    .form-control:focus {
+        border-color: #2a6d2a;
+        outline: none;
+    }
+    
+    textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+    }
+    
+    .rating-container {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    
+    .rating-star {
+        font-size: 24px;
+        color: #ccc;
+        cursor: pointer;
+    }
+    
+    .rating-star:hover,
+    .rating-star.active {
+        color: #f7d32e;
+    }
+    
+    .submit-button {
+        background-color: #2a6d2a;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 16px;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    
+    .submit-button:hover {
+        background-color: #1d4d1d;
+    }
+    
+    .thank-you-message {
+        display: none;
+        text-align: center;
+        padding: 30px;
+        background-color: #eaf5ea;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+    
+    .thank-you-title {
+        font-size: 24px;
+        color: #2a6d2a;
+        margin-bottom: 15px;
+    }
+    
+    .thank-you-text {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.6;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="title">Залишіть свій відгук!</h1>
+
+<div class="feedback-description">
+    <p>Якість неперервної інтеграції і розвиток процесів рекрутингу можливі лише за умови врахування думок і пропозицій від громадян. Будь ласка, поділіться своїм досвідом та ідеями щодо покращення процесу набору до української армії.</p>
+</div>
+
+<div class="feedback-form">
+    <form id="feedbackForm">
+        <div class="form-group">
+            <label for="name" class="form-label">Ім'я</label>
+            <input type="text" id="name" class="form-control" placeholder="Введіть ваше ім'я">
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Оцінка</label>
+            <div class="rating-container">
+                <span class="rating-star" data-value="1">★</span>
+                <span class="rating-star" data-value="2">★</span>
+                <span class="rating-star" data-value="3">★</span>
+                <span class="rating-star" data-value="4">★</span>
+                <span class="rating-star" data-value="5">★</span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="feedback" class="form-label">Відгук</label>
+            <textarea id="feedback" class="form-control" placeholder="Поділіться вашими думками та пропозиціями"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="recommendations" class="form-label">Чи рекомендували б?</label>
+            <select id="recommendations" class="form-control">
+                <option value="">Оберіть відповідь</option>
+                <option value="yes">Так, рекомендую</option>
+                <option value="no">Ні, не рекомендую</option>
+                <option value="maybe">Можливо</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="submit-button">Надіслати відгук</button>
+    </form>
+</div>
+
+<div class="thank-you-message" id="thankYouMessage">
+    <h2 class="thank-you-title">Дякуємо за ваш відгук!</h2>
+    <p class="thank-you-text">Ваші думки та пропозиції допоможуть нам покращити процес рекрутингу до української армії. Ми цінуємо ваш внесок у розвиток обороноздатності нашої країни.</p>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Робота з рейтингом
+        const stars = document.querySelectorAll('.rating-star');
+        
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const value = this.dataset.value;
+                
+                stars.forEach(s => {
+                    if (s.dataset.value <= value) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Обробка відправки форми
+        const form = document.getElementById('feedbackForm');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // В реальному проекті тут має бути AJAX-запит для відправки даних на сервер
+            
+            // Показати повідомлення про успішну відправку
+            form.style.display = 'none';
+            thankYouMessage.style.display = 'block';
+        });
+    });
+</script>
+{% endblock %}

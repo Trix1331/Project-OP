@@ -5,5 +5,5 @@ from . import views
 app_name = 'instructions'
 
 urlpatterns = [
-    path('', views.instructions_home, name='home'),  # сторінка з інструкціями
+    path('', views.instructions, name='index'),  # сторінка з інструкціями
 ]

@@ -5,5 +5,5 @@ from . import views
 app_name = 'feedback'
 
 urlpatterns = [
-    path('', views.add_feedback, name='home'),  # сторінка для відгуків
+    path('', views.add_feedback, name='add'),  # сторінка для відгуків
 ]

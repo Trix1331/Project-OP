@@ -1,4 +1,4 @@
-/* static/css/main.css */
+/* Основні стилі для шаблону base.html */
 body {
     font-family: "IBM Plex Mono", monospace;
     margin: 0;
@@ -6,12 +6,79 @@ body {
     background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
 }
 
+/* Стилі для шапки сайту */
+header {
+    background-color: white;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar {
+    padding: 10px 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+/* Іконка меню в лівій частині шапки */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Навігаційні елементи в центрі шапки */
+.nav-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-grow: 1;
+}
+
+/* Стиль для кожного елемента навігації */
+.nav-item {
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #2a6d2a;
+}
+
+/* Логотип у правій частині шапки */
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+/* Основний контейнер для контенту */
 .container {
     max-width: 800px;
     margin: 90px auto;
     background-color: white;
     padding: 40px;
-    min-height: calc(100vh - 160px);
+    min-height: calc(100vh - 200px);
 }
 
-/* Стилі з ваших HTML-файлів */
+/* Стилі для футера */
+footer {
+    background-color: #f1f1f1;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position:relative
+}
