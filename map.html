@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ukrainian Locations Map</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .header {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            right: 50px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Map of Ukrainian Locations</h1>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+
+    <script>
+        // Initialize the map centered on Ukraine
+        const map = L.map('map').setView([49.0, 31.0], 6);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Coordinates data
+        const locations = [
+            { "latitude": 49.7844093, "longitude": 30.1524094 },
+            { "latitude": 50.35106785, "longitude": 30.949851123118457 },
+            { "latitude": 50.5104532, "longitude": 30.790083894463603 },
+            { "latitude": 50.55047685, "longitude": 30.20973615 },
+            { "latitude": 49.2392809, "longitude": 28.5110617 },
+            { "latitude": 48.4900447, "longitude": 35.0659417 },
+            { "latitude": 48.9254253, "longitude": 24.7238535 },
+            { "latitude": 48.687966, "longitude": 26.601975 },
+            { "latitude": 48.5160799, "longitude": 34.5814766 },
+            { "latitude": 50.4398558, "longitude": 30.4886551 },
+            { "latitude": 50.4518663, "longitude": 30.6209891 },
+            { "latitude": 51.2173793, "longitude": 24.711564 },
+            { "latitude": 51.2449976, "longitude": 33.2197681 },
+            { "latitude": 50.95044685, "longitude": 28.641512928718196 },
+            { "latitude": 50.880134, "longitude": 26.4517079 },
+            { "latitude": 49.0660181, "longitude": 33.42003451116818 },
+            { "latitude": 47.9054987, "longitude": 33.3941281 },
+            { "latitude": 48.5100991, "longitude": 32.2697138 },
+            { "latitude": 50.0156082, "longitude": 33.0010717 },
+            { "latitude": 50.743888749999996, "longitude": 25.32089560714602 },
+            { "latitude": 49.83252415, "longitude": 24.044147848433255 },
+            { "latitude": 49.7896537, "longitude": 24.0552085 },
+            { "latitude": 49.9717829, "longitude": 33.6053907 },
+            { "latitude": 48.44188815, "longitude": 22.718125211636636 },
+            { "latitude": 48.63558655, "longitude": 35.254338074732416 },
+            { "latitude": 46.458713, "longitude": 30.728374 },
+            { "latitude": 50.3059393, "longitude": 34.8929735 },
+            { "latitude": 48.5295566, "longitude": 35.8676282 },
+            { "latitude": 47.6535892, "longitude": 34.114880047178055 },
+            { "latitude": 49.5924524, "longitude": 34.542557738881655 },
+            { "latitude": 49.543056, "longitude": 34.502399 },
+            { "latitude": 50.74655, "longitude": 33.4865951 },
+            { "latitude": 48.3334677, "longitude": 35.5112994 },
+            { "latitude": 50.923856, "longitude": 34.79148 },
+            { "latitude": 49.5498232, "longitude": 25.5942049 },
+            { "latitude": 48.62426295, "longitude": 22.294658391246685 },
+            { "latitude": 48.7327808, "longitude": 30.2043543 },
+            { "latitude": 49.380123, "longitude": 27.618918942896634 },
+            { "latitude": 49.4442069, "longitude": 32.0577722024841 },
+            { "latitude": 48.2837554, "longitude": 25.9325616 },
+            { "latitude": 51.5141197, "longitude": 31.3094031 },
+            { "latitude": 50.196723, "longitude": 27.066056 },
+            { "latitude": 51.865317000000005, "longitude": 33.47702235000001 }
+        ];
+
+        // City names corresponding to the coordinates (you can replace these with actual city names)
+        const cityNames = [
+            "Біла Церква", "Бориспіль", "Бровари", "Буча", "Вінниця",
+            "Дніпро", "Івано-Франківськ", "Кам'янець-Подільський", "Кам'янське", "Київ (Повітрофлотський)",
+            "Київ (Котляревського)", "Ковель", "Конотоп", "Коростень", "Костопіль",
+            "Кременчук", "Кривий Ріг", "Кропивницький", "Лубни", "Луцьк",
+            "Львів (Левицького)", "Львів (Червоної Калини)", "Миргород", "Мукачеве", "Новомосковськ",
+            "Одеса", "Охтирка", "Павлоград", "Покров", "Полтава",
+            "Розсошенці", "Ромни", "Синельникове", "Суми", "Тернопіль",
+            "Ужгород", "Умань", "Хмельницький", "Черкаси", "Чернівці",
+            "Чернігів", "Шепетівка", "Шостка"
+        ];
+
+        // Add markers for each location
+        locations.forEach((loc, index) => {
+            // Create marker
+            const marker = L.marker([loc.latitude, loc.longitude]).addTo(map);
+
+            // Add popup with city name (if available) or coordinates
+            const cityName = index < cityNames.length ? cityNames[index] : `Точка ${index + 1}`;
+            marker.bindPopup(`<b>${cityName}</b><br>Координати: ${loc.latitude}, ${loc.longitude}`);
+        });
+
+        // Function to fit the map to show all markers
+        function fitAllMarkers() {
+            const bounds = [];
+            locations.forEach(loc => {
+                bounds.push([loc.latitude, loc.longitude]);
+            });
+            map.fitBounds(bounds);
+        }
+
+        // Fit the map to show all markers when loaded
+        fitAllMarkers();
+    </script>
+</body>
+</html>

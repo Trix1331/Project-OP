@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Інструкції - Дослідження рекрутингу в українську армію{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: "IBM Plex Mono", monospace;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 90px auto;
+        background-color: white;
+        padding: 40px;
+        min-height: calc(100vh - 200px);
+    }
+    
+    .title {
+        font-size: 36px;
+        color: #000000;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .section {
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        color: #2a6d2a;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .instructions-list {
+        counter-reset: steps;
+        padding-left: 0;
+        list-style-type: none;
+    }
+    
+    .step {
+        position: relative;
+        padding: 15px 15px 15px 60px;
+        margin-bottom: 15px;
+        background-color: #f8f8f8;
+        border-radius: 5px;
+    }
+    
+    .step:before {
+        counter-increment: steps;
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        width: 30px;
+        height: 30px;
+        background-color: #2a6d2a;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    
+    .step-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #2a6d2a;
+    }
+    
+    .step-description {
+        color: #333;
+        line-height: 1.5;
+    }
+    
+    .documents-section {
+        background-color: #eaf5ea;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 30px;
+    }
+    
+    .documents-title {
+        font-size: 20px;
+        color: #2a6d2a;
+        margin-bottom: 15px;
+    }
+    
+    .documents-list {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+    
+    .documents-list li {
+        margin-bottom: 10px;
+        color: #333;
+    }
+    
+    .note {
+        background-color: #fff4e5;
+        border-left: 4px solid #ffd89e;
+        padding: 15px;
+        margin-top: 30px;
+        font-style: italic;
+        color: #664d03;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="title">Інструкції щодо вступу до української армії</h1>
+
+<div class="section">
+    <h2 class="section-title">Покроковий процес вступу</h2>
+    <ol class="instructions-list">
+        <li class="step">
+            <h3 class="step-title">Визначення придатності до військової служби</h3>
+            <p class="step-description">Перший крок - оцінити свою фізичну та психологічну готовність до служби в армії. Кандидат має бути громадянином України віком від 18 до 60 років, мати відповідний стан здоров'я та не мати судимостей за тяжкі злочини.</p>
+        </li>
+        <li class="step">
+            <h3 class="step-title">Відвідування територіального центру комплектування та соціальної підтримки</h3>
+            <p class="step-description">Необхідно звернутися до ТЦК та СП за місцем реєстрації. Там вам нададуть детальну інформацію про умови служби, пройдете первинну співбесіду та отримаєте перелік необхідних документів.</p>
+        </li>
+        <li class="step">
+            <h3 class="step-title">Підготовка та подання документів</h3>
+            <p class="step-description">Зібрати всі необхідні документи та подати їх до ТЦК та СП. Детальний перелік документів наведено нижче в розділі "Необхідні документи".</p>
+        </li>
+        <li class="step">
+            <h3 class="step-title">Медичне обстеження</h3>
+            <p class="step-description">Проходження медичного огляду у військово-лікарській комісії для визначення придатності до військової служби за станом здоров'я.</p>
+        </li>
+        <li class="step">
+            <h3 class="step-title">Професійно-психологічний відбір</h3>
+            <p class="step-description">Проходження тестування та співбесіди для визначення психологічної готовності до військової служби та потенційної військової спеціальності.</p>
+        </li>
+        <li class="step">
+            <h3 class="step-title">Укладання контракту</h3>
+            <p class="step-description">У разі успішного проходження попередніх етапів, відбувається підписання контракту на проходження військової служби із зазначенням умов, строку служби та соціальних гарантій.</p>
+        </li>
+        <li class="step">
+            <h3 class="step-title">Початок служби</h3>
+            <p class="step-description">Направлення до військової частини для проходження базової підготовки та початку військової служби.</p>
+        </li>
+    </ol>
+</div>
+
+<div class="documents-section">
+    <h3 class="documents-title">Необхідні документи:</h3>
+    <ul class="documents-list">
+        <li>Паспорт громадянина України</li>
+        <li>Ідентифікаційний код</li>
+        <li>Документи про освіту</li>
+        <li>Військовий квиток (якщо є) або посвідчення про приписку</li>
+        <li>Медична довідка про стан здоров'я (форма 086-о)</li>
+        <li>Фотографії 3х4 (6 шт.)</li>
+        <li>Автобіографія</li>
+        <li>Довідка про несудимість</li>
+        <li>Інші документи, що підтверджують професійну кваліфікацію (за наявності)</li>
+    </ul>
+</div>
+
+<div class="note">
+    <p><strong>Примітка:</strong> Інформація має загальний характер та може змінюватися відповідно до поточного законодавства України. Для отримання детальнішої інформації звертайтеся до територіального центру комплектування та соціальної підтримки за місцем реєстрації.</p>
+</div>
+{% endblock %}

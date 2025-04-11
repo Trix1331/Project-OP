@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Симуляція - Дослідження рекрутингу в українську армію{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: "IBM Plex Mono", monospace;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 90px auto;
+        background-color: white;
+        padding: 40px;
+        min-height: calc(100vh - 200px);
+    }
+    
+    .title {
+        font-size: 36px;
+        color: #000000;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .simulation-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .simulation-description {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    
+    .map-container {
+        width: 100%;
+        height: 400px;
+        background-color: #eee;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    
+    .questions-container {
+        padding: 30px;
+        background-color: #f8f8f8;
+        border-radius: 8px;
+    }
+    
+    .question-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #2a6d2a;
+        text-align: center;
+    }
+    
+    .questions-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .question-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .question-item input[type="radio"] {
+        margin-right: 10px;
+    }
+    
+    .question-text {
+        font-size: 16px;
+    }
+    
+    .navigation-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+    }
+    
+    .next-button {
+        background-color: #2a6d2a;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .next-button:hover {
+        background-color: #1d4d1d;
+    }
+    
+    .steps-indicator {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        gap: 10px;
+    }
+    
+    .step-indicator {
+        width: 120px;
+        padding: 10px;
+        background-color: #f0f0f0;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    
+    .step-indicator.active {
+        background-color: #2a6d2a;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="title">Симуляція</h1>
+
+<div class="simulation-container">
+    <div class="simulation-description">
+        <p>Ця симуляція призначена для того, щоб ви могли краще зрозуміти процес рекрутингу до української армії. Вам буде запропоновано пройти через основні етапи цього процесу у віртуальному середовищі. Зверніть увагу: результати симуляції не є офіційними і призначені лише для навчальних цілей.</p>
+    </div>
+    
+    <div class="steps-indicator">
+        <div class="step-indicator active">1. Знайомство</div>
+        <div class="step-indicator">2. Знайомство з ТЦК та СП</div>
+        <div class="step-indicator">3. Медогляд</div>
+    </div>
+    
+    <div class="map-container">
+        <img src="{% static 'img/simulation/map.jpg' %}" alt="Карта центрів рекрутингу" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    
+    <div class="questions-container">
+        <h2 class="question-title">Питання</h2>
+        <div class="questions-list">
+            <div class="question-item">
+                <input type="radio" id="question1" name="question" value="1">
+                <label for="question1" class="question-text">Дія 1: Відвідати найближчий ТЦК та СП</label>
+            </div>
+            <div class="question-item">
+                <input type="radio" id="question2" name="question" value="2">
+                <label for="question2" class="question-text">Дія 2: Зателефонувати до гарячої лінії</label>
+            </div>
+            <div class="question-item">
+                <input type="radio" id="question3" name="question" value="3">
+                <label for="question3" class="question-text">Дія 3: Заповнити онлайн-форму</label>
+            </div>
+        </div>
+        
+        <div class="navigation-buttons">
+            <button class="next-button">
+                Далі
+                <span>→</span>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        const nextButton = document.querySelector('.next-button');
+        
+        nextButton.addEventListener('click', function() {
+            // Тут можна додати логіку для переходу до наступного кроку симуляції
+            alert('Ця функціональність буде доступна в повній версії симуляції.');
+        });
+    });
+</script>
+{% endblock %}
