@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інструкція для жінок</title>
+    <style>
+        /* Загальні стилі для сторінки */
+        body {
+            font-family: "IBM Plex Mono", monospace;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+        }
+        
+        /* Стилі для шапки сайту */
+        header {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Іконка меню в лівій частині шапки */
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Навігаційні елементи в центрі шапки */
+        .nav-items {
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* Стиль для кожного елемента навігації */
+        .nav-item {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        /* Логотип у правій частині шапки */
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        /* Основний контейнер для контенту */
+        .container {
+            max-width: 800px;
+            margin: 90px auto;
+            background-color: white;
+            padding: 40px;
+            height: calc(165vh - 140px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Стиль для заголовка симуляції */
+        .title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #2a6d2a;
+        }
+        
+        /* Стиль для блоку з питанням */
+        .question-box {
+            background-color: #e6e6e6;
+            padding: 30px;
+            border-radius: 5px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Стиль для заголовка питання */
+        .question-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        /* Контейнер для варіантів відповідей */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Стиль для кожного варіанту відповіді */
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+        
+        /* Стиль для радіо-кнопок */
+        .option input {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* Контейнер для кнопки "Далі" */
+        .next-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Стиль для кнопки "Далі" */
+        .next-button button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 36px;
+            color: darkgreen;
+        }
+        
+        /* Базовий стиль для всіх фреймів (всі приховані за замовчуванням) */
+        .frame {
+            display: none;
+        }
+        
+        /* Стиль для активного фрейма */
+        .frame.active {
+            display: block;
+        }
+        
+        /* Стиль для блоку результатів */
+        .results {
+            background-color: #e6e6e6;
+            padding: 30px;
+            border-radius: 5px;
+        }
+        
+        /* Стиль для заголовку результатів */
+        .results-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2a6d2a;
+        }
+        
+        /* Стиль для тексту результатів */
+        .results-text {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        /* Стиль для оцінки в результатах */
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2a6d2a;
+            margin-top: 20px;
+        }
+        
+        /* Коментар для розробників */
+        .developer-note {
+            background-color: #fff4e5;
+            border: 1px solid #ffd89e;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            flex-wrap: wrap;
+        }
+
+        .footer-item {
+            font-size: 14px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .footer-line {
+            width: 100%;
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 25px 0;
+        }
+        .footer-copyright {
+            font-size: 12px;
+            color: #666;
+            text-align: center; /* Центрування тексту */
+            margin-top: 10px;
+            position: relative; /* Відносне позиціонування */
+        }
+        /* .footer-copyright {
+            font-size: 12px;
+            color: #666;
+            text-align: right; /* Вирівнювання тексту по правому краю */
+            /* position: absolute; Абсолютне позиціонування */
+            /* bottom: -890px; Відступ від низу футера */
+            /* right: 20px; Відступ від правого краю футера */
+        /* } */
+        .section-line {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 20px 0;
+        }
+
+        /* Стиль для основного тексту */
+        .content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .content h2 {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #2a6d2a;
+        }
+
+        .content ul {
+            margin: 10px 0 20px 20px;
+            padding-left: 20px;
+        }
+
+        .content ul li {
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту з навігацією -->
+    <header>
+        <div class="menu-icon">☰</div>
+        <div class="nav-items">
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+        </div>
+        <div class="logo">
+            <img src="ZSU.jpg" alt="Логотип" width="40" height="40">
+        </div>
+    </header>
+    
+    <!-- Основний контейнер для контенту -->
+    <div class="container">
+        <h1 class="title">Інструкція для жінок</h1>
+        <hr class="section-line">
+        <div class="content">
+            <p>Вступ жінок до Збройних Сил України (ЗСУ) відбувається на добровільних засадах, і процес включає кілька етапів.</p>
+            
+            <h2>1. Вимоги до кандидаток:</h2>
+            <ul>
+                <li>Вік: від 18 до 60 років.</li>
+                <li>Стан здоров'я: придатність до військової служби за результатами медичного огляду.</li>
+                <li>Освіта та спеціальність: наявність професії або спеціальності, що відповідає потребам ЗСУ.</li>
+            </ul>
+            
+            <h2>2. Процедура вступу:</h2>
+            <ul>
+                <li>Звернення до територіального центру комплектування та соціальної підтримки (ТЦК та СП): подача заяви та необхідних документів.</li>
+                <li>Медичний огляд: проходження військово-лікарської комісії (ВЛК), яка оцінює придатність до служби.</li>
+                <li>Професійно-психологічне тестування: оцінка психологічної готовності до військової служби.</li>
+                <li>Укладання контракту: після успішного проходження попередніх етапів укладається контракт на проходження військової служби.</li>
+            </ul>
+            
+            <h2>3. Популярні спеціальності серед жінок у ЗСУ:</h2>
+            <ul>
+                <li>Штабні посади – 24%.</li>
+                <li>Бойові медики, медсестри, лікарі – 22%.</li>
+                <li>Спеціальності, пов'язані з безпілотними літальними апаратами (БпЛА) – 13%.</li>
+                <li>Кухарі – 12%.</li>
+                <li>Стрілецькі спеціальності – 6%.</li>
+                <li>Зв'язок та кібербезпека – 6%.</li>
+                <li>Психологи – 3%.</li>
+            </ul>
+            
+            <h2>4. Соціальні гарантії та права:</h2>
+            <p>Жінки-військовослужбовці мають рівні права з чоловіками, включаючи доступ до посад і військових звань. Вони також користуються пільгами соціального захисту, охорони материнства і дитинства.</p>
+            
+            <h2>5. Додаткові аспекти:</h2>
+            <p>Жінки, які беруть участь у бойових діях, отримують додаткові виплати, аналогічно до чоловіків.</p>
+            
+            <p>Загалом, процес вступу жінок до ЗСУ передбачає відповідність встановленим вимогам, проходження необхідних процедур та укладання контракту на військову службу.</p>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-row">
+                <div class="footer-item">РЕСУРСИ</div>
+                <div class="footer-item">РЕСУРСИ</div>
+                <div class="footer-item">ПРО НАС</div>
+            </div>
+            <div class="footer-row">
+                <div class="footer-item">МАПА САЙТУ</div>
+                <div class="footer-item">ПРО НАС</div>
+                <div class="footer-item">МАПА САЙТУ</div>
+            </div>
+            <hr class="footer-line">
+            <div class="footer-copyright">
+                © 2025 УКУ Всі права захищено
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

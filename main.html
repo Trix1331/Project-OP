@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження набору до української армії</title>
+    <style>
+        /* Загальні стилі для сторінки */
+        body {
+        font-family: "IBM Plex Mono", monospace; /* Шрифт для всього тексту */
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+    }
+
+    /* Стиль для заголовка */
+    .title {
+        text-align: center;
+        font-size: 36px; /* Розмір шрифту */
+        margin-bottom: 40px;
+        color: #000000;
+        font-weight: bold; /* Жирний текст */
+        line-height: 1.2; /* Висота рядка */
+    }
+
+    /* Стиль для основного тексту */
+    .content {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    .content h2 {
+        font-size: 20px;
+        margin-top: 20px;
+        color: #2a6d2a;
+    }
+
+.content ul {
+    margin: 10px 0 20px 20px;
+    padding-left: 20px;
+}
+
+.content ul li {
+    margin-bottom: 10px;
+}
+
+.content p {
+    margin-bottom: 20px;
+}
+
+/* Стиль для авторів */
+.authors-title {
+    font-size: 20px;
+    color: #2a6d2a;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.author-name {
+    font-size: 16px;
+    color: #333;
+}
+        
+        /* Стилі для шапки сайту */
+        header {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Іконка меню в лівій частині шапки */
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Навігаційні елементи в центрі шапки */
+        .nav-items {
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* Стиль для кожного елемента навігації */
+        .nav-item {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .nav-items {
+        display: flex;
+        justify-content: center; /* Вирівнювання по центру */
+        align-items: center; /* Вирівнювання по вертикалі */
+        gap: 30px; /* Відстань між елементами */
+        flex-grow: 1; /* Розтягування для центрування */
+    }
+
+    .nav-item {
+        text-transform: uppercase;
+        font-weight: 500;
+        text-align: center; /* Вирівнювання тексту по центру */
+        font-family: "IBM Plex Mono", monospace; /* Шрифт, як на фото */
+    }
+        
+        /* Логотип у правій частині шапки */
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        /* Основний контейнер для контенту */
+        .container {
+            max-width: 800px;
+            margin: 90px auto;
+            background-color: white;
+            padding: 40px;
+            height: calc(160vh - 140px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Стиль для заголовка симуляції */
+        .title {
+        text-align: center;
+        font-size: 36px; /* Збільшено розмір шрифту */
+        margin-bottom: 40px;
+        color: #000000;
+        font-family: "IBM Plex Mono", monospace; /* Шрифт, як на фото */
+        font-weight: bold; /* Жирний текст */
+        line-height: 1.2; /* Висота рядка для кращого вигляду */
+    }
+
+        /* Коментар для розробників */
+        .developer-note {
+            background-color: #fff4e5;
+            border: 1px solid #ffd89e;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            flex-wrap: wrap;
+        }
+
+        .footer-item {
+            font-size: 14px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .footer-line {
+            width: 100%;
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 25px 0;
+        }
+        .footer-item:hover {
+        color: #2a6d2a; /* Зелений колір при наведенні */
+        }
+        .footer-copyright {
+            font-size: 12px;
+            color: #666;
+            text-align: center; /* Центрування тексту */
+            margin-top: 10px;
+            position: relative; /* Відносне позиціонування */
+        }
+        /* .footer-copyright {
+            font-size: 12px;
+            color: #666;
+            text-align: right; /* Вирівнювання тексту по правому краю */
+            /* position: absolute; Абсолютне позиціонування */
+            /* bottom: -890px; Відступ від низу футера */
+            /* right: 20px; Відступ від правого краю футера */
+        /* } */
+        .section-line {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 20px 0;
+        }
+
+        /* Стиль для основного тексту */
+        .content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .content h2 {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #2a6d2a;
+        }
+
+        .content ul {
+            margin: 10px 0 20px 20px;
+            padding-left: 20px;
+        }
+
+        .content ul li {
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+        }
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu {
+            display: none; /* Приховано за замовчуванням */
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            padding: 10px;
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-menu ul li {
+            margin: 10px 0;
+        }
+        .dropdown-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 16px;
+        }
+
+        .dropdown-menu ul li a:hover {
+            color: #2a6d2a; /* Зелений колір при наведенні */
+        }  
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту з навігацією -->
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="nav-items">
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+            <div class="nav-item">ТЕКСТ</div>
+        </div>
+        <div class="logo">
+            <img src="ZSU.jpg" alt="Логотип" width="40" height="40">
+        </div>
+    </header>
+
+    <div class="dropdown-menu" id="dropdownMenu">
+        <ul>
+            <li><a href="#section1">Зміст</a></li>
+            <li><a href="#section2">Покрокові рекомендації</a></li>
+            <li><a href="#section3">Симуляції</a></li>
+            <li><a href="#section4">Вступ до армії</a></li>
+            <li><a href="#section5">Нота центру рекрутингу</a></li>
+            <li><a href="#section6">Поверніть відгук</a></li>
+        </ul>
+    </div>
+    <!-- Основний контейнер для контенту -->
+    <div class="container">
+        <h1 class="title">
+            Дослідження<br>
+            рекрутингу в<br>
+            українську армію
+        </h1>
+        
+        <style>
+            .title {
+                font-family: "IBM Plex Mono", monospace; /* Шрифт, як на фото */
+                font-size: 60px; /* Розмір шрифту */
+                font-weight: bold; /* Жирний текст */
+                line-height: 1.2; /* Висота рядка */
+                color: #000000; /* Чорний колір тексту */
+                text-align: left; /* Вирівнювання тексту по лівому краю */
+                margin-left: 50px; /* Відступ зліва для імітації центрування */
+                margin-bottom: 40px; /* Відступ знизу */
+            }
+        </style>
+        
+        <hr class="section-line">
+        <div class="authors-section">
+            <h2 class="authors-title">Автори:</h2>
+            <div class="authors-container">
+                <div class="author">
+                    <img src="vitya.jpg"class="author-photo">
+                    <p class="author-name">Сиротюк Віктор</p>
+                </div>
+                <div class="author">
+                    <img src="vitya.jpg"class="author-photo">
+                    <p class="author-name">Британ Михайло</p>
+                </div>
+                <div class="author">
+                    <img src="vitya.jpg"class="author-photo">
+                    <p class="author-name">Онопрієнко Дарина</p>
+                </div>
+                <div class="author">
+                    <img src="vitya.jpg" class="author-photo">
+                    <p class="author-name">Говоров Андрій</p>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            .authors-section {
+                text-align: left; /* Вирівнювання секції по лівому краю */
+                margin-top: 40px;
+                padding-left: 45px;
+                margin-bottom: 40px; /* Додано нижній відступ */
+            }
+        
+            .authors-title {
+                font-size: 20px;
+                color: #2a6d2a;
+                margin-bottom: 20px;
+                text-align: left; /* Вирівнювання тексту заголовка по лівому краю */
+            }
+        
+            .authors-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); /* Дві колонки */
+                gap: 20px;
+                justify-content: center;
+            }
+        
+            .author {
+                display: flex;
+                align-items: center;
+                gap: 15px; /* Відступ між фото та текстом */
+                text-align: left;
+            }
+        
+            .author-photo {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        
+            .author-name {
+                font-size: 16px;
+                color: #333;
+            }
+        </style>
+        <div class="content">
+            <div class="content">
+                <p>Хочемо дивувати гостей столиці якістю неперервної інтеграції і прагнемо розвивати кабельне телебачення, ремонт ювелірних виробів і годинників і закупівлю-продаж разом із іноземними компаніями. На постійній основі товариство застосовує вигідні до найменших дрібниць прораховані технології інновацій, безпрограшних домовленостей та глобального громадянства. Стабільно зміцнює позиції широкий вибір зберігання даних: підприємницька діяльність, інформаційні технології і свіжі овочі та фрукти для киян і стильних особистостей. Наша мета проста: це забезпечення вам накопичення, відкриттів та бізнесу.</p>
+                <p>Хочемо дивувати гостей столиці якістю неперервної інтеграції і прагнемо розвивати кабельне телебачення, ремонт ювелірних виробів і годинників і закупівлю-продаж разом із іноземними компаніями. На постійній основі товариство застосовує вигідні до найменших дрібниць прораховані технології інновацій, безпрограшних домовленостей та глобального громадянства. Стабільно зміцнює позиції широкий вибір зберігання даних: підприємницька діяльність, інформаційні технології і свіжі овочі та фрукти для киян і стильних особистостей. Наша мета проста: це забезпечення вам накопичення, відкриттів та бізнесу.</p>
+                <p>Ми впевнені, що впровадження продуктів харчування (розробка нових товарних груп та відділів) критично важливе для розвитку, тому ми постійно виконуємо зобов'язання та разом з тим, відкриті до новаторства.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-row">
+                <div class="footer-item">РЕСУРСИ</div>
+                <div class="footer-item">РЕСУРСИ</div>
+                <div class="footer-item">ПРО НАС</div>
+            </div>
+            <div class="footer-row">
+                <div class="footer-item">МАПА САЙТУ</div>
+                <div class="footer-item">ПРО НАС</div>
+                <div class="footer-item">МАПА САЙТУ</div>
+            </div>
+            <hr class="footer-line">
+            <div class="footer-copyright">
+                © 2025 УКУ Всі права захищено
+            </div>
+        </div>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('dropdownMenu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
