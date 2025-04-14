@@ -11,7 +11,14 @@
         background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
     }
 
-    .container {
+    body > .container {
+        background-color: transparent;
+        max-width: 100%;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .content-container {
         max-width: 800px;
         margin: 90px auto;
         background-color: white;
@@ -101,6 +108,7 @@
         margin-bottom: 0;
         text-transform: uppercase;
     }
+    
 
     #map {
         width: 100%;
@@ -114,57 +122,60 @@
         line-height: 1.6;
         text-align: justify;
     }
+    /* Закоментовані стилі меню */
 </style>
 {% endblock %}
 
 {% block content %}
-<h1 class="title">
-    Дослідження<br>
-    рекрутингу в<br>
-    українську армію
-</h1>
+<div class="content-container">
+    <h1 class="title">
+        Дослідження<br>
+        рекрутингу в<br>
+        українську армію
+    </h1>
 
-<hr class="section-line">
+    <hr class="section-line">
 
-<div class="authors-section">
-    <h2 class="authors-title">Автори:</h2>
-    <div class="authors-container">
-        <div class="author">
-            <img src="{% static 'main_site/images/vitya.jpg' %}" class="author-photo" alt="Сиротюк Віктор">
-            <p class="author-name">Сиротюк Віктор</p>
-        </div>
-        <div class="author">
-            <img src="{% static 'main_site/images/temp_misha.jpg' %}" class="author-photo" alt="Британ Михайло">
-            <p class="author-name">Британ Михайло</p>
-        </div>
-        <div class="author">
-            <img src="{% static 'main_site/images/darynka.jpg' %}" class="author-photo" alt="Онопрієнко Дарина">
-            <p class="author-name">Онопрієнко Дарина</p>
-        </div>
-        <div class="author">
-            <img src="{% static 'main_site/images/andrii.jpg' %}" class="author-photo" alt="Говоров Андрій">
-            <p class="author-name">Говоров Андрій</p>
+    <div class="authors-section">
+        <h2 class="authors-title">Автори:</h2>
+        <div class="authors-container">
+            <div class="author">
+                <img src="{% static 'main_site/images/vitya.jpg' %}" class="author-photo" alt="Сиротюк Віктор">
+                <p class="author-name">Сиротюк Віктор</p>
+            </div>
+            <div class="author">
+                <img src="{% static 'main_site/images/temp_misha.jpg' %}" class="author-photo" alt="Британ Михайло">
+                <p class="author-name">Британ Михайло</p>
+            </div>
+            <div class="author">
+                <img src="{% static 'main_site/images/darynka.jpg' %}" class="author-photo" alt="Онопрієнко Дарина">
+                <p class="author-name">Онопрієнко Дарина</p>
+            </div>
+            <div class="author">
+                <img src="{% static 'main_site/images/andrii.jpg' %}" class="author-photo" alt="Говоров Андрій">
+                <p class="author-name">Говоров Андрій</p>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="content">
-    <p>Наше дослідження спрямоване на аналіз і вдосконалення процесів рекрутингу до української армії. В умовах сучасних викликів ефективне залучення та підготовка військових кадрів є критично важливим завданням для національної безпеки.</p>
+    <div class="content">
+        <p>Наше дослідження спрямоване на аналіз і вдосконалення процесів рекрутингу до української армії. В умовах сучасних викликів ефективне залучення та підготовка військових кадрів є критично важливим завданням для національної безпеки.</p>
 
-    <p>Дослідження включає аналіз існуючих методик рекрутингу, їх ефективність, а також надає рекомендації щодо вдосконалення процесу набору, відбору та підготовки військовослужбовців. Особлива увага приділяється психологічним аспектам рекрутингу, мотивації потенційних кандидатів та створенню привабливого іміджу військової служби.</p>
-</div>
-
-<!-- Map Section -->
-<div class="map-section">
-    <h2 class="map-title">МАПА ЦЕНТРІВ РЕКРУТИНГУ</h2>
-    <div id="map"></div>
-    <div class="map-description">
-        <p>Хочемо дивувати гостей столиці якістю неперервної інтеграції і прагнемо розвивати кабельне телебачення, ремонт ювелірних виробів і годинників і закупівлю-продаж разом із іноземними компаніями. На постійній основі товариство.</p>
+        <p>Дослідження включає аналіз існуючих методик рекрутингу, їх ефективність, а також надає рекомендації щодо вдосконалення процесу набору, відбору та підготовки військовослужбовців. Особлива увага приділяється психологічним аспектам рекрутингу, мотивації потенційних кандидатів та створенню привабливого іміджу військової служби.</p>
     </div>
-</div>
 
-<div class="content">
-    <p>На цьому сайті ви знайдете детальні інструкції щодо процесу вступу до армії, корисні симуляції різних ситуацій, а також можливість залишити свій відгук та пропозиції щодо покращення системи рекрутингу.</p>
+    <!-- Map Section -->
+    <div class="map-section">
+        <h2 class="map-title">МАПА ЦЕНТРІВ РЕКРУТИНГУ</h2>
+        <div id="map"></div>
+        <div class="map-description">
+            <p>Хочемо дивувати гостей столиці якістю неперервної інтеграції і прагнемо розвивати кабельне телебачення, ремонт ювелірних виробів і годинників і закупівлю-продаж разом із іноземними компаніями. На постійній основі товариство.</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <p>На цьому сайті ви знайдете детальні інструкції щодо процесу вступу до армії, корисні симуляції різних ситуацій, а також можливість залишити свій відгук та пропозиції щодо покращення системи рекрутингу.</p>
+    </div>
 </div>
 {% endblock %}
 
