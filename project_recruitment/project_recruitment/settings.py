@@ -87,13 +87,17 @@ WSGI_APPLICATION = 'project_recruitment.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'army_recruitment_db',
-        'USER': 'postgres',
-        'PASSWORD': 'JoeLeTaxi3',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'army_recruitment_db',  # Замість 'your_db_name' поставте реальну назву бази даних
+        'USER': 'postgres',      # Замість 'your_db_user' поставте ім'я користувача бази даних
+        'PASSWORD': 'mishaloh123',  # Замість 'your_db_password' поставте пароль користувача
+        'HOST': 'localhost',   # Якщо база даних на локальному сервері
+        'PORT': '5432',        # Якщо порт PostgreSQL за умовчанням
+        'OPTIONS': {
+            'client_encoding': 'UTF8',
+        },
     }
 }
+
 
 
 
