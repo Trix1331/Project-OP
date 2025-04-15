@@ -71,21 +71,101 @@
             align-items: center;
             border-bottom: 1px solid #ddd;
         }
+        .menu-container {
+            position: relative;
+            margin-left: 20px;
+        }
         
+        .menu-button {
+            background-color: #5a6e5a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .menu-button:hover {
+            background-color: #4a5e4a;
+        }
+        
+        .menu-button i {
+            margin-left: 8px;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .menu-container:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: #333;
+            padding: 14px 16px;
+            text-decoration: none;
+            display: block;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            border-left: 4px solid #3e4a39;
+        }
+        
+        .dropdown-content a.active {
+            background-color: #e7ebe7;
+            border-left: 4px solid #3e4a39;
+            font-weight: bold;
+        }
+        
+        .main-nav {
+            display: flex;
+            margin-left: 40px;
+        }
+        
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 20px 25px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .main-nav a:hover, .main-nav a.active {
+            background-color: #4a5e4a;
+        }
+        
+        .icon {
+            margin-right: 10px;
+        }
         /* Іконка меню в лівій частині шапки */
-        .menu-icon {
+        /* .menu-icon {
             font-size: 24px;
             cursor: pointer;
-        }
+        } */
         
         /* Навігаційні елементи в центрі шапки */
-        .nav-items {
+        /* .nav-items {
             display: flex;
             gap: 30px;
-        }
+        } */
         
         /* Стиль для кожного елемента навігації */
-        .nav-item {
+        /* .nav-item {
             text-transform: uppercase;
             font-weight: 500;
         }
@@ -93,17 +173,17 @@
         .nav-items {
         display: flex;
         justify-content: center; /* Вирівнювання по центру */
-        align-items: center; /* Вирівнювання по вертикалі */
-        gap: 30px; /* Відстань між елементами */
-        flex-grow: 1; /* Розтягування для центрування */
-    }
-
+        /* align-items: center; Вирівнювання по вертикалі */
+        /* gap: 30px; Відстань між елементами */
+        /* flex-grow: 1; Розтягування для центрування */
+    /* } */ */
+/* 
     .nav-item {
         text-transform: uppercase;
         font-weight: 500;
         text-align: center; /* Вирівнювання тексту по центру */
-        font-family: "IBM Plex Mono", monospace; /* Шрифт, як на фото */
-    }
+        /* font-family: "IBM Plex Mono", monospace; Шрифт, як на фото */
+    /* } */
         
         /* Логотип у правій частині шапки */
         .logo {
