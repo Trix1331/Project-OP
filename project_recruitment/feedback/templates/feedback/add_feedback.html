@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Відгуки - Дослідження рекрутингу в українську армію{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: "IBM Plex Mono", monospace;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+    }
+
+    body > .container {
+        background-color: transparent;
+        max-width: 100%;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .content-container {
+        max-width: 800px;
+        margin: 90px auto;
+        background-color: white;
+        padding: 40px;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .feedback-layout {
+        display: flex;
+        flex-direction: row;
+        min-height: calc(100vh - 200px);
+    }
+
+    .feedback-left {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .feedback-right {
+        flex: 1;
+        padding: 20px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .feedback-title {
+        text-align: left;
+        font-size: 60px;
+        margin-bottom: 40px;
+        color: #000000;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+
+    .feedback-text {
+        font-size: 24px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .feedback-form {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-size: 18px;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: "IBM Plex Mono", monospace;
+    }
+
+    .form-control-textarea {
+        height: 150px;
+        resize: vertical;
+    }
+
+    .star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+    font-size: 24px;
+}
+
+    .star-rating input {
+        display: none;
+    }
+
+    .star-rating label {
+        cursor: pointer;
+        font-size: 30px;
+        padding: 0 5px;
+        color: #848383;
+    }
+
+    .star-rating input:checked ~ label {
+        color: #000;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+        color: #444;
+    }
+
+    .register-text {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .register-btn {
+        background-color: #fff;
+        border: 2px solid #000;
+        color: #000;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 30px;
+        font-family: "IBM Plex Mono", monospace;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .register-btn:hover {
+        background-color: #000;
+        color: #fff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <div class="feedback-layout">
+        <div class="feedback-left">
+            <h1 class="feedback-title">
+                Залишіть свій відгук!
+            </h1>
+            
+            <p class="feedback-text">
+                Якістю неперервної інтеграції і прагнемо ювелірних виробів і годинників і закупівлю-продаж.
+            </p>
+        </div>
+        
+        <div class="feedback-right">
+            <form class="feedback-form" method="post" action="{% url 'feedback:add' %}">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label class="form-label" for="name">Ім'я</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Оцінка</label>
+                    <div class="star-rating">
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="comment">Відгук</label>
+                    <textarea class="form-control form-control-textarea" id="comment" name="comment" required></textarea>
+                </div>
+                
+                <div class="register-text">
+                    <p>Дякуємо!</p>
+                    <button type="button" class="register-btn">Відправити відгук</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Зірковий рейтинг
+        const stars = document.querySelectorAll('.star-rating label');
+        
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                let i = parseInt(star.previousElementSibling.value);
+                document.querySelector(`#star${i}`).checked = true;
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -26,7 +26,7 @@ urlpatterns = [
     path('simulation/', include('simulation.urls')),
     path('instructions/', include('instructions.urls')),
     path('accounts/', include('accounts.urls')),
-    path('feedback/', include('feedback.urls')),
+    path('feedback/', include(('feedback.urls', 'feedback'), namespace='feedback'))
 ]
 # Додаємо URL для медіа файлів
 if settings.DEBUG:
