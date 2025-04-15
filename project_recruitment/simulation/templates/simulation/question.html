@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Питання - Симуляція військового рекрутингу{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: "IBM Plex Mono", monospace;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+    }
+    
+    body > .container {
+        background-color: transparent;
+        max-width: 100%;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .content-container {
+        max-width: 800px;
+        margin: 90px auto;
+        background-color: white;
+        padding: 40px;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .title {
+        font-size: 36px;
+        color: #000000;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .simulation-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .question-container {
+        padding: 30px;
+        background-color: #f8f8f8;
+        border-radius: 8px;
+    }
+    
+    .question-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #2a6d2a;
+    }
+    
+    .question-text {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+    
+    .answers-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .answer-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .answer-item input[type="radio"] {
+        margin-top: 5px;
+    }
+    
+    .answer-text {
+        font-size: 16px;
+    }
+    
+    .submit-button {
+        background-color: #2a6d2a;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    
+    .submit-button:hover {
+        background-color: #1d4d1d;
+    }
+    
+    .progress-container {
+        margin-bottom: 30px;
+    }
+    
+    .progress-bar {
+        height: 10px;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background-color: #2a6d2a;
+        width: 0%; /* Буде встановлено через JavaScript */
+    }
+    
+    .block-info {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1 class="title">Симуляція військового рекрутингу</h1>
+    
+    <div class="simulation-container">
+        <div class="progress-container">
+            <div class="block-info">{{ question.block_title }}</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+        
+        <div class="question-container">
+            <h2 class="question-title">Питання {{ current_question_number }}</h2>
+            <p class="question-text">{{ question.text }}</p>
+            
+            <form method="post" action="{% url 'simulation:question' question_id=question.id %}">
+                {% csrf_token %}
+                <div class="answers-list">
+                    {% for answer in question.answers %}
+                    <div class="answer-item">
+                        <input type="radio" id="answer{{ answer.id }}" name="answer" value="{{ answer.id }}" required>
+                        <label for="answer{{ answer.id }}" class="answer-text">{{ answer.text }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <button type="submit" class="submit-button">
+                    Відповісти
+                    <span>→</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Calculate progress
+        const totalQuestions = {{ total_questions }};
+        const currentQuestion = {{ current_question_number }};
+        const progress = (currentQuestion / totalQuestions) * 100;
+        
+        document.getElementById('progressFill').style.width = progress + '%';
+    });
+</script>
+{% endblock %}

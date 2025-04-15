@@ -91,7 +91,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'JoeLeTaxi3',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5432'
     }
 }
 
@@ -143,3 +143,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+DATABASE_ROUTERS = ['project_recruitment.database_router.SimulationRouter']

@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Інструкції для жінок - Вступ до Збройних Сил України{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: "IBM Plex Mono", monospace;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+        margin: 0;
+        padding: 0;
+    }
+    
+    .content-container {
+        max-width: 800px;
+        margin: 90px auto;
+        background-color: white;
+        padding: 40px;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+    }
+    
+    .title {
+        font-size: 36px;
+        color: #000000;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .section {
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        color: #6B4D7A;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .instructions-list {
+        counter-reset: steps;
+        padding-left: 0;
+        list-style-type: none;
+    }
+    
+    .step {
+        position: relative;
+        padding: 15px 15px 15px 60px;
+        margin-bottom: 15px;
+        background-color: #f8f8f8;
+        border-radius: 5px;
+    }
+    
+    .step:before {
+        counter-increment: steps;
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        width: 30px;
+        height: 30px;
+        background-color: #2a6d2a;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    
+    .step-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #2a6d2a;
+    }
+    
+    .step-description {
+        color: #333;
+        line-height: 1.5;
+    }
+    
+    .specialties-section {
+        background-color: #f0eaf5;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 30px;
+    }
+    
+    .specialties-title {
+        font-size: 20px;
+        color: #6B4D7A;
+        margin-bottom: 15px;
+    }
+    
+    .specialties-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    .specialty-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        background-color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .specialty-name {
+        flex-grow: 1;
+        font-weight: 500;
+    }
+    
+    .specialty-percentage {
+        background-color: #2a6d2a;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-weight: bold;
+        min-width: 45px;
+        text-align: center;
+    }
+    
+    .note {
+        background-color: #fff4e5;
+        border-left: 4px solid #ffd89e;
+        padding: 15px;
+        margin-top: 30px;
+        font-style: italic;
+        color: #664d03;
+    }
+    
+    .requirements-list {
+        list-style-type: disc;
+        padding-left: 20px;
+        line-height: 1.6;
+    }
+    
+    .requirements-list li {
+        margin-bottom: 8px;
+    }
+    
+    .guarantee-box {
+        background-color: #e6f7ff;
+        border-left: 4px solid #91d5ff;
+        padding: 15px;
+        margin-top: 20px;
+        color: #003a8c;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="content-container">
+        <h1 class="title">Інструкції для жінок щодо вступу до ЗСУ</h1>
+
+        <div class="section">
+            <h2 class="section-title">Вступ</h2>
+            <p>Вступ жінок до Збройних Сил України (ЗСУ) відбувається на добровільних засадах, і процес включає кілька етапів.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Вимоги до кандидаток</h2>
+            <ul class="requirements-list">
+                <li><strong>Вік:</strong> від 18 до 60 років.</li>
+                <li><strong>Стан здоров'я:</strong> придатність до військової служби за результатами медичного огляду.</li>
+                <li><strong>Освіта та спеціальність:</strong> наявність професії або спеціальності, що відповідає потребам ЗСУ.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Процедура вступу</h2>
+            <ol class="instructions-list">
+                <li class="step">
+                    <h3 class="step-title">Звернення до ТЦК та СП</h3>
+                    <p class="step-description">Подайте заяву та необхідні документи до територіального центру комплектування та соціальної підтримки за місцем проживання.</p>
+                </li>
+                <li class="step">
+                    <h3 class="step-title">Медичний огляд</h3>
+                    <p class="step-description">Пройдіть обстеження військово-лікарської комісії (ВЛК), яка оцінить вашу придатність до військової служби.</p>
+                </li>
+                <li class="step">
+                    <h3 class="step-title">Професійно-психологічне тестування</h3>
+                    <p class="step-description">Виконайте комплекс тестів для оцінки психологічної готовності до служби та визначення можливих напрямків спеціалізації.</p>
+                </li>
+                <li class="step">
+                    <h3 class="step-title">Укладання контракту</h3>
+                    <p class="step-description">Після успішного проходження попередніх етапів укладіть контракт на проходження військової служби, який визначає умови та термін служби.</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="specialties-section">
+            <h3 class="specialties-title">Популярні спеціальності серед жінок у ЗСУ:</h3>
+            <ul class="specialties-list">
+                <li class="specialty-item">
+                    <span class="specialty-name">Штабні посади</span>
+                    <span class="specialty-percentage">24%</span>
+                </li>
+                <li class="specialty-item">
+                    <span class="specialty-name">Бойові медики, медсестри, лікарі</span>
+                    <span class="specialty-percentage">22%</span>
+                </li>
+                <li class="specialty-item">
+                    <span class="specialty-name">Спеціальності, пов'язані з БпЛА</span>
+                    <span class="specialty-percentage">13%</span>
+                </li>
+                <li class="specialty-item">
+                    <span class="specialty-name">Кухарі</span>
+                    <span class="specialty-percentage">12%</span>
+                </li>
+                <li class="specialty-item">
+                    <span class="specialty-name">Стрілецькі спеціальності</span>
+                    <span class="specialty-percentage">6%</span>
+                </li>
+                <li class="specialty-item">
+                    <span class="specialty-name">Зв'язок та кібербезпека</span>
+                    <span class="specialty-percentage">6%</span>
+                </li>
+                <li class="specialty-item">
+                    <span class="specialty-name">Психологи</span>
+                    <span class="specialty-percentage">3%</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Соціальні гарантії та права</h2>
+            <div class="guarantee-box">
+                <p>Жінки-військовослужбовці мають рівні права з чоловіками, включаючи доступ до посад і військових звань. Вони також користуються пільгами соціального захисту, охорони материнства і дитинства.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Додаткові аспекти</h2>
+            <p>Жінки, які беруть участь у бойових діях, отримують додаткові виплати, аналогічно до чоловіків.</p>
+        </div>
+
+        <div class="note">
+            <p><strong>Примітка:</strong> Загалом, процес вступу жінок до ЗСУ передбачає відповідність встановленим вимогам, проходження необхідних процедур та укладання контракту на військову службу. Для отримання детальнішої інформації звертайтеся до територіального центру комплектування та соціальної підтримки за місцем реєстрації.</p>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -90,19 +90,17 @@
 <body>
     <!-- Шапка сайту з навігацією -->
     <header>
-        <div class="container d-flex justify-content-between align-items-center py-2">
-          <!-- Меню зліва -->
-          <div class="dropdown">
+        <div class="dropdown">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               Меню
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <li><a class="dropdown-item" href="#section1">Зміст</a></li>
-              <li><a class="dropdown-item" href="#section2">Покрокові рекомендації</a></li>
-              <li><a class="dropdown-item" href="#section3">Симуляції</a></li>
-              <li><a class="dropdown-item" href="#section4">Вступ до армії</a></li>
-              <li><a class="dropdown-item" href="#section5">Нота центру рекрутингу</a></li>
-              <li><a class="dropdown-item" href="{% url 'feedback:add' %}">Поверніть відгук</a></li>
+              <li><a class="dropdown-item" href="{% url 'main_site:home' %}">Головна</a></li>
+              <li><a class="dropdown-item" href="{% url 'instructions:index' %}">Інструкції</a></li>
+              <li><a class="dropdown-item" href="{% url 'instructions:women' %}">Блок для жінок</a></li>
+              <li><a class="dropdown-item" href="{% url 'simulation:start' %}">Симуляція</a></li>
+              <li><a class="dropdown-item" href="{% url 'feedback:add' %}">Відгук</a></li>
             </ul>
           </div>
       
@@ -110,12 +108,14 @@
           <nav class="d-flex gap-1">
             <a href="{% url 'main_site:home' %}" class="nav-item-custom">ГОЛОВНА</a>
             <a href="{% url 'instructions:index' %}" class="nav-item-custom">ІНСТРУКЦІЇ</a>
-            <a href="{% url 'simulation:index' %}" class="nav-item-custom">СИМУЛЯЦІЯ</a>
+            <a href="{% url 'simulation:start' %}" class="nav-item-custom">СИМУЛЯЦІЯ</a>
             <a href="{% url 'feedback:add' %}" class="nav-item-custom">ВІДГУК</a>
           </nav>
       
           <!-- Логотип справа -->
-          <img src="{% static 'main_site/images/ZSU.jpg' %}" alt="Логотип" class="logo">
+          <a href="{% url 'main_site:home' %}">
+            <img src="{% static 'main_site/images/ZSU.jpg' %}" alt="Логотип" class="logo">
+          </a>
         </div>
       </header>      
 

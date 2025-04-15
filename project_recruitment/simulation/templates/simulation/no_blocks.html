@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Помилка - Симуляція військового рекрутингу{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: "IBM Plex Mono", monospace;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+    }
+    
+    body > .container {
+        background-color: transparent;
+        max-width: 100%;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .content-container {
+        max-width: 800px;
+        margin: 90px auto;
+        background-color: white;
+        padding: 40px;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .title {
+        font-size: 36px;
+        color: #000000;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+    
+    .error-message {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+    
+    .admin-link {
+        background-color: #2a6d2a;
+        color: white;
+        text-decoration: none;
+        padding: 12px 25px;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    
+    .admin-link:hover {
+        background-color: #1d4d1d;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1 class="title">Помилка конфігурації</h1>
+    
+    <p class="error-message">
+        На жаль, у системі відсутні блоки симуляції. Будь ласка, зверніться до адміністратора для налаштування системи.
+    </p>
+    
+    <a href="/admin/" class="admin-link">Перейти до адмін-панелі</a>
+</div>
+{% endblock %}

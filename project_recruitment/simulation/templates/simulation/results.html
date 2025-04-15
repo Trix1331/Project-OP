@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Результати - Симуляція військового рекрутингу{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: "IBM Plex Mono", monospace;
+        background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+    }
+    
+    body > .container {
+        background-color: transparent;
+        max-width: 100%;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .content-container {
+        max-width: 800px;
+        margin: 90px auto;
+        background-color: white;
+        padding: 40px;
+        min-height: calc(100vh - 200px);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .title {
+        font-size: 36px;
+        color: #000000;
+        margin-bottom: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .results-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    
+    .results-card {
+        background-color: #f8f8f8;
+        padding: 40px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+    }
+    
+    .score-container {
+        margin: 30px 0;
+    }
+    
+    .score-title {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    
+    .score-value {
+        font-size: 48px;
+        font-weight: bold;
+        color: #2a6d2a;
+    }
+    
+    .score-max {
+        font-size: 20px;
+        color: #666;
+    }
+    
+    .result-text {
+        font-size: 24px;
+        color: #2a6d2a;
+        margin: 30px 0;
+        font-weight: bold;
+    }
+    
+    .restart-button {
+        background-color: #2a6d2a;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 18px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+    }
+    
+    .restart-button:hover {
+        background-color: #1d4d1d;
+    }
+    
+    .share-container {
+        margin-top: 30px;
+    }
+    
+    .share-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    
+    .share-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .share-button {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <h1 class="title">Результати симуляції</h1>
+    
+    <div class="results-container">
+        <div class="results-card">
+            <h2>Ви завершили симуляцію</h2>
+            
+            <div class="score-container">
+                <div class="score-title">Ваш результат:</div>
+                <div class="score-value">{{ total_score }}</div>
+                <div class="score-max">із {{ max_score }} можливих</div>
+            </div>
+            
+            <div class="result-text">
+                {{ result_text }}
+            </div>
+            
+            <a href="{% url 'simulation:start' %}" class="restart-button">Почати знову</a>
+            
+            <div class="share-container">
+                <div class="share-title">Поділитися результатом:</div>
+                <div class="share-buttons">
+                    <button class="share-button" id="facebookShare">Facebook</button>
+                    <button class="share-button" id="twitterShare">Twitter</button>
+                    <button class="share-button" id="telegramShare">Telegram</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Share functionality
+        const shareText = "Я отримав {{ total_score }} із {{ max_score }} балів у симуляції військового рекрутингу!";
+        const shareUrl = window.location.href;
+        
+        document.getElementById('facebookShare').addEventListener('click', function() {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`, '_blank');
+        });
+        
+        document.getElementById('twitterShare').addEventListener('click', function() {
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+        });
+        
+        document.getElementById('telegramShare').addEventListener('click', function() {
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
+        });
+    });
+</script>
+{% endblock %}

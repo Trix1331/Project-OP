@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Симуляція — Питання{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">{{ question.text }}</h2>
+
+    <!-- Прогрес-бар -->
+    <div class="progress mb-4">
+        <div class="progress-bar" role="progressbar" style="width: {{ progress }}%;" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+            {{ progress }}%
+        </div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for option in question.options.all %}
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="option" id="option{{ option.id }}" value="{{ option.id }}" required>
+                <label class="form-check-label" for="option{{ option.id }}">
+                    {{ option.text }}
+                </label>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary mt-3">Далі</button>
+    </form>
+</div>
+{% endblock %}
