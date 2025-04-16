@@ -99,29 +99,30 @@
 
     .star-rating {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: left;
-    font-size: 24px;
-}
+    direction: rtl; /* ← оце обов'язково */
+    justify-content: center;
+    padding: 10px 20px;
+
+    }
 
     .star-rating input {
         display: none;
     }
 
     .star-rating label {
-        cursor: pointer;
-        font-size: 30px;
-        padding: 0 5px;
-        color: #848383;
-    }
-
-    .star-rating input:checked ~ label {
-        color: #000;
+    font-size: 30px;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
     }
 
     .star-rating label:hover,
     .star-rating label:hover ~ label {
-        color: #444;
+        color: #ffe600;
+    }
+
+    .star-rating label.active {
+        color: #ff0000;
     }
 
     .register-text {
@@ -169,16 +170,20 @@
                 <div class="form-group">
                     <label class="form-label">Оцінка</label>
                     <div class="star-rating">
-                        <input type="radio" id="star1" name="rating" value="1">
-                        <label for="star1">★</label>
-                        <input type="radio" id="star2" name="rating" value="2">
-                        <label for="star2">★</label>
-                        <input type="radio" id="star3" name="rating" value="3">
-                        <label for="star3">★</label>
-                        <input type="radio" id="star4" name="rating" value="4">
-                        <label for="star4">★</label>
                         <input type="radio" id="star5" name="rating" value="5">
                         <label for="star5">★</label>
+                        
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+                        
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+                        
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+                        
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
                     </div>
                 </div>
                 
@@ -210,14 +215,23 @@
 
 {% block extra_js %}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Зірковий рейтинг
-        const stars = document.querySelectorAll('.star-rating label');
-        
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                let i = parseInt(star.previousElementSibling.value);
-                document.querySelector(`#star${i}`).checked = true;
+    document.addEventListener('DOMContentLoaded', function () {
+        const ratingInputs = document.querySelectorAll('.star-rating input');
+        const labels = document.querySelectorAll('.star-rating label');
+
+        ratingInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                // Очистити попередні
+                labels.forEach(label => label.classList.remove('active'));
+
+                // Знайти вибране значення
+                const rating = parseInt(input.value);
+
+                // Додати клас .active до відповідних label
+                for (let i = 1; i <= rating; i++) {
+                    const label = document.querySelector(`label[for="star${i}"]`);
+                    if (label) label.classList.add('active');
+                }
             });
         });
     });
