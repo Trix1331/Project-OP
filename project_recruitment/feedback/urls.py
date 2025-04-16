@@ -1,9 +1,10 @@
 # feedback/urls.py
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = 'feedback'
 
 urlpatterns = [
-    path('', views.add_feedback, name='add'),  # сторінка для відгуків
+    path('add/', views.add_feedback, name='add'),
+    # path('feedback/', include('feedback.urls')),
 ]

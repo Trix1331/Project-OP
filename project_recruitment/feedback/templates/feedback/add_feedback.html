@@ -156,12 +156,7 @@
             <h1 class="feedback-title">
                 Залишіть свій відгук!
             </h1>
-            
-            <p class="feedback-text">
-                Якістю неперервної інтеграції і прагнемо ювелірних виробів і годинників і закупівлю-продаж.
-            </p>
         </div>
-        
         <div class="feedback-right">
             <form class="feedback-form" method="post" action="{% url 'feedback:add' %}">
                 {% csrf_token %}
@@ -194,12 +189,23 @@
                 
                 <div class="register-text">
                     <p>Дякуємо!</p>
-                    <button type="button" class="register-btn">Відправити відгук</button>
+                    <button type="submit" class="register-btn">Відправити</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+{% if messages %}
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            {% for message in messages %}
+                alert("{{ message }}");  // Спливне повідомлення
+            {% endfor %}
+        });
+    </script>
+{% endif %}
+
 {% endblock %}
 
 {% block extra_js %}
