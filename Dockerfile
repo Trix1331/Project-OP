@@ -1,23 +1,18 @@
-# Використовуємо базовий образ Python
-FROM python:3.9-slim
+FROM python:3.10-slim
 
-# Встановлюємо pip, якщо його немає
-RUN apt-get update && apt-get install -y python3-pip
-
-# Створюємо робочу директорію
 WORKDIR /app
 
-# Копіюємо файл вимог для встановлення залежностей
 COPY requirements.txt .
-
-# Встановлюємо всі залежності
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копіюємо весь код проєкту в контейнер
 COPY . .
 
-# Виставляємо порт 8000 (де зазвичай працює Django)
+ENV PYTHONUNBUFFERED=1
+ENV DJANGO_SETTINGS_MODULE=project_recruitment.settings
+ENV PORT=8000
+
+RUN python manage.py collectstatic --noinput
+
 EXPOSE 8000
 
-# Використовуємо gunicorn для запуску Django в продакшн середовищі
-CMD ["gunicorn", "project_recruitment.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD gunicorn project_recruitment.wsgi:application --bind 0.0.0.0:$PORT
