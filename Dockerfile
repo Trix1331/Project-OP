@@ -1,5 +1,5 @@
 # Використовуємо базовий образ Python
-FROM python:3.9
+FROM python:3.9-slim
 
 # Створюємо робочу директорію
 WORKDIR /app
@@ -16,5 +16,5 @@ COPY . .
 # Виставляємо порт 8000 (де зазвичай працює Django)
 EXPOSE 8000
 
-# Запускаємо сервер
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Використовуємо gunicorn для запуску Django в продакшн середовищі
+CMD ["gunicorn", "project_recruitment.wsgi:application", "--bind", "0.0.0.0:8000"]
