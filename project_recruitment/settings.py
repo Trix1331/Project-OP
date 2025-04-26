@@ -161,8 +161,12 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'still-shir-team-op-14-2a12b2ff.koyeb.app'
+    
 ]
 
 
 
 DATABASE_ROUTERS = ['project_recruitment.database_router.SimulationRouter']
+CSRF_TRUSTED_ORIGINS = [
+    'https://still-shir-team-op-14-2a12b2ff.koyeb.app',
+]
