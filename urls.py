@@ -18,16 +18,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main_site.urls')),  # Це має бути головна сторінка
+    path('', include('main_site.urls')),
     path('simulation/', include('simulation.urls')),
     path('instructions/', include('instructions.urls')),
     path('accounts/', include('accounts.urls')),
-    path('feedback/', include(('feedback.urls', 'feedback'), namespace='feedback'))
+    path('feedback/', include('feedback.urls')),
+    path('', lambda request: redirect('simulation:start'))
 ]
+
 # Додаємо URL для медіа файлів
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
