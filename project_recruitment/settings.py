@@ -150,6 +150,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'still-shir-team-op-14-2a12b2ff.koyeb.app']
+ALLOWED_HOSTS = ['*']
+
 
 DATABASE_ROUTERS = ['project_recruitment.database_router.SimulationRouter']
