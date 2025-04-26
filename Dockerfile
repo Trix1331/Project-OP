@@ -1,6 +1,9 @@
 # Використовуємо базовий образ Python
 FROM python:3.9-slim
 
+# Встановлюємо pip, якщо його немає
+RUN apt-get update && apt-get install -y python3-pip
+
 # Створюємо робочу директорію
 WORKDIR /app
 
