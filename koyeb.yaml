@@ -1,17 +1,16 @@
 service:
   name: project-recruitment
+  env:
+    - name: PYTHONUNBUFFERED
+      value: "1"
+    - name: DJANGO_SETTINGS_MODULE
+      value: "project_recruitment.settings"
   ports:
     - port: 8000
       protocol: http
   routes:
     - path: /
-      service: project-recruitment
   build:
-    builder: buildpacks
-    buildpacks:
-      - name: heroku/python
-    env:
-      - name: PYTHONUNBUFFERED
-        value: "1"
+    builder: buildpack
   run:
-    command: bash -c "python -m pip install -r requirements.txt && python manage.py collectstatic --noinput && gunicorn project_recruitment.wsgi:application"
+    command: gunicorn project_recruitment.wsgi:application --bind 0.0.0.0:$PORT
