@@ -87,8 +87,21 @@ WSGI_APPLICATION = 'project_recruitment.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'koyebdb',  # назва бази даних
+        'USER': 'koyeb-adm',  # юзернейм
+        'PASSWORD': 'npg_jZL31ORnaCQA',  # пароль
+        'HOST': 'ep-billowing-math-a21pc275.eu-central-1.pg.koyeb.app',  # адреса бази
+        'PORT': '5432',  # стандартний порт PostgreSQL
+        'OPTIONS': {
+            'sslmode': 'require',
+            'client_encoding': 'UTF8',
+        },
+    }
 }
+
+
 
 
 
