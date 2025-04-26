@@ -8,7 +8,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 ENV PYTHONUNBUFFERED=1
-ENV DJANGO_SETTINGS_MODULE=project_recruitment.settings
 ENV PORT=8000
 
 RUN python manage.py collectstatic --noinput
