@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-f_24&*1&b1o#5+fo&oi1)3#970+hd^3j9bdo&^06u1pbs(z=$g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'still-shir-team-op-14-2a12b2ff.koyeb.app']
+ALLOWED_HOSTS = []
 
 
 
@@ -151,5 +151,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'still-shir-team-op-14-2a12b2ff.koyeb.app']
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 DATABASE_ROUTERS = ['project_recruitment.database_router.SimulationRouter']
