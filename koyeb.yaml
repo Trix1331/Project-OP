@@ -1,16 +1,9 @@
-service:
-  name: project-recruitment
-  env:
-    - name: PYTHONUNBUFFERED
-      value: "1"
-    - name: DJANGO_SETTINGS_MODULE
-      value: "project_recruitment.settings"
-  ports:
-    - port: 8000
-      protocol: http
-  routes:
-    - path: /
-  build:
-    builder: buildpack
-  run:
-    command: gunicorn project_recruitment.wsgi:application --bind 0.0.0.0:$PORT
+name: project-recruitment
+type: web
+git:
+  repository: Trix1331/Project-OP
+  branch: review
+  buildpack: dockerfile
+ports:
+  - port: 8000
+    http: true
