@@ -9,8 +9,8 @@ def add_feedback(request):
         form = FeedbackForm(request.POST)
         if form.is_valid():
             form.save()
-            # Після успішної відправки форми ми показуємо повідомлення
-            messages.success(request, "Дякуємо за ваш відгук!")
+            # Змінене повідомлення - коротше
+            messages.success(request, "Дякуємо за відгук")
             return redirect('feedback:add')  # Перенаправляємо на ту саму сторінку для показу повідомлення
     else:
         form = FeedbackForm()
