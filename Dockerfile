@@ -1,10 +1,8 @@
-# Використовуємо офіційний Python образ
 FROM python:3.10-slim
 
-# Встановлюємо робочу директорію
 WORKDIR /app
 
-# Встановлюємо залежності PostgreSQL та інші необхідні пакети
+# Встановлюємо залежності PostgreSQL
 RUN apt-get update && apt-get install -y \
     postgresql-client \
     libpq-dev \
@@ -13,23 +11,18 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Копіюємо файл requirements.txt
-COPY requirements.txt .
-
-# Встановлюємо залежності
+COPY requirements.txt . 
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копіюємо решту файлів проекту
-COPY . .
+# Копіюємо всі файли проекту в контейнер
+COPY . /app/
 
-# Задаємо змінну середовища для Python
 ENV PYTHONUNBUFFERED=1
+ENV PORT=8000
 
 # Збираємо статичні файли
-RUN python project_recruitment/manage.py collectstatic --noinput
+RUN python /app/Project-OP/manage.py collectstatic --noinput
 
-# Відкриваємо порт для серверу
 EXPOSE 8000
 
-# Запускаємо gunicorn для запуску Django
-CMD ["gunicorn", "project_recruitment.wsgi:application", "--bind", "0.0.0.0:$PORT", "--timeout", "120"]
+CMD gunicorn project_recruitment.wsgi:application --bind 0.0.0.0:$PORT
