@@ -11,18 +11,18 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt . 
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Копіюємо всі файли проекту в контейнер
-COPY . /app/
+COPY . .
 
 ENV PYTHONUNBUFFERED=1
 ENV PORT=8000
 
 # Збираємо статичні файли
-RUN python /app/Project-OP/manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
-EXPOSE 8000
+EXPOSE $PORT
 
 CMD gunicorn project_recruitment.wsgi:application --bind 0.0.0.0:$PORT
