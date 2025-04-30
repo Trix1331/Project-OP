@@ -84,6 +84,12 @@
             text-decoration: underline;
             color: #000;
         }
+        @media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+}
+
 
     </style>
 </head>
@@ -91,32 +97,32 @@
     <!-- Шапка сайту з навігацією -->
     <header>
         <div class="dropdown">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              Меню
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item" href="{% url 'main_site:home' %}">Головна</a></li>
-              <li><a class="dropdown-item" href="{% url 'instructions:index' %}">Інструкції</a></li>
-              <li><a class="dropdown-item" href="{% url 'instructions:women' %}">Блок для жінок</a></li>
-              <li><a class="dropdown-item" href="{% url 'simulation:start' %}">Симуляція</a></li>
-              <li><a class="dropdown-item" href="{% url 'feedback:add' %}">Відгук</a></li>
-            </ul>
-          </div>
-      
-          <!-- Навігація по центру -->
-          <nav class="d-flex gap-1">
-            <a href="{% url 'main_site:home' %}" class="nav-item-custom">ГОЛОВНА</a>
-            <a href="{% url 'instructions:index' %}" class="nav-item-custom">ІНСТРУКЦІЇ</a>
-            <a href="{% url 'simulation:start' %}" class="nav-item-custom">СИМУЛЯЦІЯ</a>
-            <a href="{% url 'feedback:add' %}" class="nav-item-custom">ВІДГУК</a>
-          </nav>
-      
-          <!-- Логотип справа -->
-          <a href="{% url 'main_site:home' %}">
-            <img src="{% static 'main_site/images/ZSU.jpg' %}" alt="Логотип" class="logo">
-          </a>
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Меню
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="{% url 'main_site:home' %}">Головна</a></li>
+            <li><a class="dropdown-item" href="{% url 'instructions:index' %}">Інструкції</a></li>
+            <li><a class="dropdown-item" href="{% url 'instructions:women' %}">Блок для жінок</a></li>
+            <li><a class="dropdown-item" href="{% url 'simulation:start' %}">Симуляція</a></li>
+            <li><a class="dropdown-item" href="{% url 'feedback:add' %}">Відгук</a></li>
+          </ul>
         </div>
-      </header>      
+      
+        <!-- Навігація по центру (буде прихована на мобільних) -->
+        <nav class="desktop-nav d-flex gap-1">
+          <a href="{% url 'main_site:home' %}" class="nav-item-custom">ГОЛОВНА</a>
+          <a href="{% url 'instructions:index' %}" class="nav-item-custom">ІНСТРУКЦІЇ</a>
+          <a href="{% url 'simulation:start' %}" class="nav-item-custom">СИМУЛЯЦІЯ</a>
+          <a href="{% url 'feedback:add' %}" class="nav-item-custom">ВІДГУК</a>
+        </nav>
+      
+        <!-- Логотип справа -->
+        <a href="{% url 'main_site:home' %}">
+          <img src="{% static 'main_site/images/ZSU.jpg' %}" alt="Логотип" class="logo">
+        </a>
+      </header>
+            
 
     <div class="container mt-4">
         {% block content %}{% endblock %}
