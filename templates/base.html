@@ -10,46 +10,24 @@
     <style>
         header {
             background-color: white;
-            padding: 0.5rem 0.5rem;
+            padding: 0.5rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #ddd;
             height: auto;
-            width: 100%;
+            max-height: 80px;
+        }
+        header .container {
+        padding: 0.5rem 1rem;
         }
 
+
         .nav-item-custom {
-            margin: 0 5px;
+            margin: 0 10px;
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            font-size: 16px;
-        }
-
-        @media (max-width: 768px) {
-            .desktop-nav {
-                display: none !important;
-            }
-            .mobile-menu {
-                display: block !important;
-            }
-            header {
-                padding: 0.5rem;
-                justify-content: space-between;
-            }
-            .logo {
-                height: 35px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .mobile-menu {
-                display: none !important;
-            }
-            .desktop-nav {
-                display: flex !important;
-            }
         }
 
         .nav-item-custom:hover {
@@ -62,35 +40,25 @@
         }
 
         .logo {
-            height: 40px;
-            width: auto;
+            height: 50px;
+            width: 50px;
         }
 
         footer {
             background-color: #f8f9fa;
-            padding: 15px 0;
-            margin-top: 30px;
+            padding: 20px 0;
+            margin-top: 40px;
             border-top: 1px solid #ddd;
         }
 
         .footer-container {
             text-align: center;
-            padding: 0 15px;
         }
 
         .footer-item {
-            margin: 0 10px;
+            margin: 0 15px;
             text-decoration: none;
             color: #333;
-            display: inline-block;
-            padding: 5px 0;
-        }
-
-        @media (max-width: 576px) {
-            .footer-item {
-                display: block;
-                margin: 8px 0;
-            }
         }
 
         .footer-item:hover {
@@ -98,44 +66,57 @@
         }
 
         .footer-line {
-            margin: 15px 0;
+            margin: 20px 0;
             border-color: #ccc;
         }
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-item-custom {
+            color: #333;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .nav-item-custom:hover {
+            text-decoration: underline;
+            color: #000;
+        }
+
     </style>
 </head>
 <body>
     <!-- Шапка сайту з навігацією -->
     <header>
-        <!-- Мобільне меню (видиме тільки на малих екранах) -->
-        <div class="mobile-menu">
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Меню
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="#section1">Зміст</a></li>
-                    <li><a class="dropdown-item" href="{% url 'main_site:home' %}">Головна</a></li>
-                    <li><a class="dropdown-item" href="{% url 'instructions:index' %}">Інструкції</a></li>
-                    <li><a class="dropdown-item" href="{% url 'instructions:women' %}">Блок для жінок</a></li>
-                    <li><a class="dropdown-item" href="{% url 'simulation:start' %}">Симуляція</a></li>
-                    <li><a class="dropdown-item" href="{% url 'feedback:add' %}">Відгук</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Десктопна навігація (видима тільки на великих екранах) -->
-        <nav class="desktop-nav d-flex gap-1">
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              Меню
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="{% url 'main_site:home' %}">Головна</a></li>
+              <li><a class="dropdown-item" href="{% url 'instructions:index' %}">Інструкції</a></li>
+              <li><a class="dropdown-item" href="{% url 'instructions:women' %}">Блок для жінок</a></li>
+              <li><a class="dropdown-item" href="{% url 'simulation:start' %}">Симуляція</a></li>
+              <li><a class="dropdown-item" href="{% url 'feedback:add' %}">Відгук</a></li>
+            </ul>
+          </div>
+      
+          <!-- Навігація по центру -->
+          <nav class="d-flex gap-1">
             <a href="{% url 'main_site:home' %}" class="nav-item-custom">ГОЛОВНА</a>
             <a href="{% url 'instructions:index' %}" class="nav-item-custom">ІНСТРУКЦІЇ</a>
             <a href="{% url 'simulation:start' %}" class="nav-item-custom">СИМУЛЯЦІЯ</a>
             <a href="{% url 'feedback:add' %}" class="nav-item-custom">ВІДГУК</a>
-        </nav>
-
-        <!-- Логотип справа -->
-        <a href="{% url 'main_site:home' %}">
+          </nav>
+      
+          <!-- Логотип справа -->
+          <a href="{% url 'main_site:home' %}">
             <img src="{% static 'main_site/images/ZSU.jpg' %}" alt="Логотип" class="logo">
-        </a>
-    </header>
+          </a>
+        </div>
+      </header>      
 
     <div class="container mt-4">
         {% block content %}{% endblock %}
@@ -143,10 +124,10 @@
 
     <footer>
         <div class="footer-container">
-            <div class="footer-links">
+            <div>
                 <a href="{% url 'instructions:index' %}" class="footer-item">ІНСТРУКЦІЇ</a>
                 <a href="{% url 'main_site:home' %}" class="footer-item">ГОЛОВНА</a>
-                <a href="{% url 'simulation:start' %}" class="footer-item">СИМУЛЯЦІЯ</a>
+                <a href="{% url 'simulation:start' %}" class="nav-item-custom">СИМУЛЯЦІЯ</a>
                 <a href="{% url 'feedback:add' %}" class="footer-item">ВІДГУК</a>
             </div>
             <hr class="footer-line">
