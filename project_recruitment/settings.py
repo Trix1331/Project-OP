@@ -163,6 +163,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     'still-shir-team-op-14-2a12b2ff.koyeb.app'
     
 # ]
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
+
 ALLOWED_HOSTS = ['*']
 
 

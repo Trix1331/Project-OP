@@ -202,34 +202,38 @@
 </div>
 
 {% if messages %}
-    <div id="custom-message-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center;">
-        <div style="background: #333; color: white; padding: 20px; border-radius: 10px; text-align: center; max-width: 400px;">
-            {% for message in messages %}
-                <p style="margin-bottom: 15px;">{{ message }}</p>
-            {% endfor %}
-            <button id="custom-message-ok" style="background: #6c91ea; color: white; border: none; padding: 8px 30px; border-radius: 20px; cursor: pointer;">OK</button>
-        </div>
-    </div>
-
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
-            const overlay = document.getElementById('custom-message-overlay');
-            const okButton = document.getElementById('custom-message-ok');
-            
-            // Показати повідомлення
-            overlay.style.display = 'flex';
-            
-            // Закрити по кнопці OK
-            okButton.addEventListener('click', function() {
-                overlay.style.display = 'none';
-            });
-            
-            // Закрити по кліку на оверлей
-            overlay.addEventListener('click', function(e) {
-                if (e.target === overlay) {
-                    overlay.style.display = 'none';
-                }
-            });
+            {% for message in messages %}
+                alert("{{ message }}");  // Спливне повідомлення
+            {% endfor %}
         });
     </script>
 {% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ratingInputs = document.querySelectorAll('.star-rating input');
+        const labels = document.querySelectorAll('.star-rating label');
+
+        ratingInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                // Очистити попередні
+                labels.forEach(label => label.classList.remove('active'));
+
+                // Знайти вибране значення
+                const rating = parseInt(input.value);
+
+                // Додати клас .active до відповідних label
+                for (let i = 1; i <= rating; i++) {
+                    const label = document.querySelector(`label[for="star${i}"]`);
+                    if (label) label.classList.add('active');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
