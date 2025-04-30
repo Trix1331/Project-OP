@@ -43,7 +43,13 @@
     window.addEventListener('load', function(_) {
         const buttons = document.getElementsByClassName("theme-toggle");
         Array.from(buttons).forEach((btn) => {
-            btn.addEventListener("click", cycleTheme);
+            btn.addEventListener("click", function() {
+                cycleTheme();
+                // Можна змінити текст кнопки в залежності від вибраної теми (додатково)
+                const newTheme = localStorage.getItem("theme");
+                const themeText = newTheme === 'light' ? 'Switch to Dark Mode' : newTheme === 'dark' ? 'Switch to Light Mode' : 'Auto Mode';
+                btn.querySelector(".theme-toggle-text").textContent = themeText;
+            });
         });
     });
 

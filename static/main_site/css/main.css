@@ -9,12 +9,14 @@ body {
 /* Стилі для шапки сайту */
 header {
     background-color: black;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-bottom: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .navbar {
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 .navbar .container {
@@ -22,6 +24,8 @@ header {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 /* Іконка меню в лівій частині шапки */
@@ -35,7 +39,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 15px;
     flex-grow: 1;
 }
 
@@ -46,6 +50,7 @@ header {
     text-decoration: none;
     color: #333;
     transition: color 0.3s ease;
+    font-size: 16px;
 }
 
 .nav-item:hover {
@@ -61,18 +66,22 @@ header {
 /* Основний контейнер для контенту */
 .container {
     max-width: 800px;
-    margin: 90px auto;
+    width: 100%;
+    margin: 60px auto 20px auto;
     background-color: white;
-    padding: 40px;
-    min-height: calc(100vh - 200px);
+    padding: 20px;
+    min-height: calc(100vh - 180px);
+    box-sizing: border-box;
 }
 
 /* Стилі для футера */
 footer {
     background-color: #f1f1f1;
-    padding: 20px 0;
+    padding: 15px 10px;
     text-align: center;
     border-top: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .footer-container {
@@ -80,5 +89,122 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    position:relative
+    position: relative;
+}
+
+/* Медіа-запити для адаптивності */
+@media (max-width: 768px) {
+    .nav-items {
+        gap: 10px;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .nav-item {
+        font-size: 14px;
+        padding: 5px;
+    }
+    
+    .navbar .container {
+        flex-direction: column;
+    }
+    
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .container {
+        margin: 40px auto 15px auto;
+        padding: 15px;
+    }
+    
+    .mobile-menu-container {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .mobile-nav {
+        display: flex;
+        width: 100%;
+    }
+    
+    .desktop-nav {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-nav {
+        display: none;
+    }
+    
+    .desktop-nav {
+        display: flex;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 10px;
+        margin: 30px auto 10px auto;
+    }
+    
+    .nav-item {
+        font-size: 12px;
+        padding: 3px;
+    }
+    
+    .footer-container a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+
+/* Стилі для мобільного меню */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    z-index: 100;
+    border-top: 1px solid #555;
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.mobile-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+}
+
+.mobile-menu a:hover {
+    background-color: #333;
+}
+
+/* Стилі для кнопки меню на мобільних пристроях */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
 }

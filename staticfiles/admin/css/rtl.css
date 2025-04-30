@@ -291,3 +291,61 @@ form .form-row p.datetime {
 .selector .selector-chooser {
     margin: 0;
 }
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 767px) {
+    /* Adjust margins, paddings, and layout for smaller screens */
+    .module ul, .module ol {
+        margin-left: 0;
+        margin-right: 1em;
+    }
+
+    .object-tools {
+        float: none;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    #user-tools {
+        text-align: center;
+        left: auto;
+        right: auto;
+    }
+
+    #content-main, #content-related {
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .colMS {
+        margin-left: 0;
+    }
+
+    .submit-row {
+        text-align: center;
+    }
+
+    .inline-deletelink {
+        float: none;
+        display: block;
+        margin: 10px 0;
+    }
+
+    /* Make form controls and links more mobile-friendly */
+    form .aligned ul {
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    form ul.inline li {
+        float: none;
+        padding-left: 0;
+    }
+
+    .paginator input {
+        margin-left: 0;
+        margin-right: 10px;
+    }
+}

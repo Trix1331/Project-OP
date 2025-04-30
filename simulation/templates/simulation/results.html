@@ -9,7 +9,7 @@
         font-family: "IBM Plex Mono", monospace;
         background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
     }
-    
+
     body > .container {
         background-color: transparent;
         max-width: 100%;
@@ -26,7 +26,7 @@
         display: flex;
         flex-direction: column;
     }
-    
+
     .title {
         font-size: 36px;
         color: #000000;
@@ -34,14 +34,14 @@
         font-weight: bold;
         text-align: center;
     }
-    
+
     .results-container {
         display: flex;
         flex-direction: column;
         gap: 30px;
         align-items: center;
     }
-    
+
     .results-card {
         background-color: #f8f8f8;
         padding: 40px;
@@ -50,35 +50,35 @@
         max-width: 600px;
         text-align: center;
     }
-    
+
     .score-container {
         margin: 30px 0;
     }
-    
+
     .score-title {
         font-size: 20px;
         color: #333;
         margin-bottom: 15px;
     }
-    
+
     .score-value {
         font-size: 48px;
         font-weight: bold;
         color: #2a6d2a;
     }
-    
+
     .score-max {
         font-size: 20px;
         color: #666;
     }
-    
+
     .result-text {
         font-size: 24px;
         color: #2a6d2a;
         margin: 30px 0;
         font-weight: bold;
     }
-    
+
     .restart-button {
         background-color: #2a6d2a;
         color: white;
@@ -92,26 +92,26 @@
         display: inline-block;
         margin-top: 20px;
     }
-    
+
     .restart-button:hover {
         background-color: #1d4d1d;
     }
-    
+
     .share-container {
         margin-top: 30px;
     }
-    
+
     .share-title {
         font-size: 18px;
         margin-bottom: 15px;
     }
-    
+
     .share-buttons {
         display: flex;
         justify-content: center;
         gap: 15px;
     }
-    
+
     .share-button {
         background-color: #333;
         color: white;
@@ -119,6 +119,102 @@
         padding: 10px 15px;
         border-radius: 5px;
         cursor: pointer;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 767px) {
+        .content-container {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .results-card {
+            padding: 20px;
+        }
+
+        .score-title {
+            font-size: 18px;
+        }
+
+        .score-value {
+            font-size: 36px;
+        }
+
+        .score-max {
+            font-size: 16px;
+        }
+
+        .result-text {
+            font-size: 20px;
+        }
+
+        .restart-button {
+            font-size: 16px;
+            padding: 12px 25px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .share-title {
+            font-size: 16px;
+        }
+
+        .share-button {
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+    }
+
+    /* Tablet styles */
+    @media (max-width: 1024px) and (min-width: 768px) {
+        .content-container {
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .title {
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .results-card {
+            padding: 30px;
+        }
+
+        .score-title {
+            font-size: 18px;
+        }
+
+        .score-value {
+            font-size: 42px;
+        }
+
+        .score-max {
+            font-size: 18px;
+        }
+
+        .result-text {
+            font-size: 22px;
+        }
+
+        .restart-button {
+            font-size: 16px;
+            padding: 12px 25px;
+        }
+
+        .share-title {
+            font-size: 17px;
+        }
+
+        .share-button {
+            font-size: 15px;
+            padding: 10px 15px;
+        }
     }
 </style>
 {% endblock %}

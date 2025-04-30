@@ -1,8 +1,3 @@
-/*global gettext, pgettext, get_format, quickElement, removeChildren*/
-/*
-calendar.js - Calendar functions by Adrian Holovaty
-depends on core.js for utility functions like removeChildren or quickElement
-*/
 'use strict';
 {
     // CalendarNamespace -- Provides a collection of HTML calendar-related helper functions
@@ -89,17 +84,6 @@ depends on core.js for utility functions like removeChildren or quickElement
             const todayYear = today.getFullYear();
             let todayClass = '';
 
-            // Use UTC functions here because the date field does not contain time
-            // and using the UTC function variants prevent the local time offset
-            // from altering the date, specifically the day field.  For example:
-            //
-            // ```
-            // var x = new Date('2013-10-02');
-            // var day = x.getDate();
-            // ```
-            //
-            // The day variable above will be 1 instead of 2 in, say, US Pacific time
-            // zone.
             let isSelectedMonth = false;
             if (typeof selected !== 'undefined') {
                 isSelectedMonth = (selected.getUTCFullYear() === year && (selected.getUTCMonth() + 1) === month);
@@ -151,7 +135,6 @@ depends on core.js for utility functions like removeChildren or quickElement
                     todayClass = '';
                 }
 
-                // use UTC function; see above for explanation.
                 if (isSelectedMonth && currentDay === selected.getUTCDate()) {
                     if (todayClass !== '') {
                         todayClass += " ";
@@ -165,7 +148,7 @@ depends on core.js for utility functions like removeChildren or quickElement
                 currentDay++;
             }
 
-            // Draw blanks after end of month (optional, but makes for valid code)
+            // Draw blanks after end of month
             while (tableRow.childNodes.length < 7) {
                 nonDayCell = quickElement('td', tableRow, ' ');
                 nonDayCell.className = "nonday";
@@ -177,11 +160,6 @@ depends on core.js for utility functions like removeChildren or quickElement
 
     // Calendar -- A calendar instance
     function Calendar(div_id, callback, selected) {
-        // div_id (string) is the ID of the element in which the calendar will
-        //     be displayed
-        // callback (string) is the name of a JavaScript function that will be
-        //     called with the parameters (year, month, day) when a day in the
-        //     calendar is clicked
         this.div_id = div_id;
         this.callback = callback;
         this.today = new Date();
@@ -191,6 +169,7 @@ depends on core.js for utility functions like removeChildren or quickElement
             this.selected = selected;
         }
     }
+
     Calendar.prototype = {
         drawCurrent: function() {
             CalendarNamespace.draw(this.currentMonth, this.currentYear, this.div_id, this.callback, this.selected);
@@ -234,6 +213,22 @@ depends on core.js for utility functions like removeChildren or quickElement
             this.drawCurrent();
         }
     };
+
     window.Calendar = Calendar;
     window.CalendarNamespace = CalendarNamespace;
+
+    // CSS media query to adapt the calendar layout for mobile devices
+    const style = document.createElement('style');
+    style.textContent = `
+        @media (max-width: 768px) {
+            .calendar-table {
+                font-size: 12px;
+                width: 100%;
+            }
+            .calendar-table td, .calendar-table th {
+                padding: 5px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 }

@@ -1,5 +1,4 @@
 /* LOGIN FORM */
-
 .login {
     background: var(--darkened-bg);
     height: auto;
@@ -58,4 +57,55 @@
 
 .login .password-reset-link {
     text-align: center;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 600px) {
+    .login #container {
+        width: 100%;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .login #header h1 {
+        font-size: 1rem;
+    }
+
+    .login .form-row label {
+        font-size: 0.9rem;
+    }
+
+    .login .form-row #id_username, .login .form-row #id_password {
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .login .submit-row input {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .login .password-reset-link {
+        font-size: 0.9rem;
+    }
+}
+
+/* TABLET OPTIMIZATION */
+@media (max-width: 768px) {
+    .login #container {
+        width: 80%;
+    }
+
+    .login .form-row label {
+        font-size: 1rem;
+    }
+
+    .login .form-row #id_username, .login .form-row #id_password {
+        padding: 8px;
+        font-size: 1rem;
+    }
+
+    .login .submit-row input {
+        padding: 10px;
+    }
 }

@@ -1,28 +1,161 @@
 {% extends "base.html" %}
 {% block title %}Симуляція — Питання{% endblock %}
 
+{% block extra_css %}
+<style>
+    .question-container {
+        max-width: 800px;
+        width: 95%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .question-text {
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    .progress {
+        height: 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+    }
+
+    .progress-bar {
+        background-color: #2a6d2a;
+    }
+
+    .form-check {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+    }
+
+    .form-check:hover {
+        background-color: #f9f9f9;
+    }
+
+    .form-check-input {
+        margin-top: 6px;
+    }
+
+    .form-check-label {
+        padding-left: 10px;
+        font-size: 16px;
+    }
+
+    .btn-next {
+        background-color: #2a6d2a;
+        color: white;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn-next:hover {
+        background-color: #1d4d1d;
+    }
+
+    /* Медіа-запити для адаптивності */
+    @media (max-width: 768px) {
+        .question-container {
+            padding: 15px;
+            width: 90%;
+        }
+
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .progress {
+            height: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-check {
+            padding: 8px;
+            margin-bottom: 12px;
+        }
+
+        .form-check-label {
+            font-size: 15px;
+        }
+
+        .btn-next {
+            padding: 8px 20px;
+            font-size: 15px;
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .question-container {
+            padding: 12px;
+            width: 95%;
+        }
+
+        .question-text {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .progress {
+            height: 14px;
+            margin-bottom: 15px;
+        }
+
+        .form-check {
+            padding: 6px;
+            margin-bottom: 10px;
+        }
+
+        .form-check-label {
+            font-size: 14px;
+        }
+
+        .btn-next {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4">{{ question.text }}</h2>
+<div class="container mt-4">
+    <div class="question-container">
+        <h2 class="question-text">{{ question.text }}</h2>
 
-    <!-- Прогрес-бар -->
-    <div class="progress mb-4">
-        <div class="progress-bar" role="progressbar" style="width: {{ progress }}%;" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
-            {{ progress }}%
-        </div>
-    </div>
-
-    <form method="post">
-        {% csrf_token %}
-        {% for option in question.options.all %}
-            <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="option" id="option{{ option.id }}" value="{{ option.id }}" required>
-                <label class="form-check-label" for="option{{ option.id }}">
-                    {{ option.text }}
-                </label>
+        <!-- Прогрес-бар -->
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{ progress }}%;" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+                {{ progress }}%
             </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary mt-3">Далі</button>
-    </form>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            {% for option in question.options.all %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="option" id="option{{ option.id }}" value="{{ option.id }}" required>
+                    <label class="form-check-label" for="option{{ option.id }}">
+                        {{ option.text }}
+                    </label>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-next mt-3">Далі</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

@@ -9,7 +9,7 @@
 
     function dismissChildPopups() {
         relatedWindows.forEach(function(win) {
-            if(!win.closed) {
+            if (!win.closed) {
                 win.dismissChildPopups();
                 win.close();    
             }
@@ -39,7 +39,19 @@
         if (add_popup) {
             href.searchParams.set('_popup', 1);
         }
-        const win = window.open(href, name, 'height=500,width=800,resizable=yes,scrollbars=yes');
+
+        // Check screen width and adjust the window size accordingly
+        const windowWidth = window.innerWidth;
+        let width = 800;
+        let height = 500;
+
+        // If it's a mobile device, reduce the popup window size
+        if (windowWidth < 768) {
+            width = windowWidth - 40;  // Make it fit within the screen with some padding
+            height = 500;  // Keep height fixed for mobile, can be adjusted
+        }
+
+        const win = window.open(href, name, `height=${height},width=${width},resizable=yes,scrollbars=yes`);
         relatedWindows.push(win);
         win.focus();
         return false;
@@ -89,15 +101,8 @@
     }
 
     function updateRelatedSelectsOptions(currentSelect, win, objId, newRepr, newId, skipIds = []) {
-        // After create/edit a model from the options next to the current
-        // select (+ or :pencil:) update ForeignKey PK of the rest of selects
-        // in the page.
-
         const path = win.location.pathname;
-        // Extract the model from the popup url '.../<model>/add/' or
-        // '.../<model>/<id>/change/' depending the action (add or change).
         const modelName = path.split('/')[path.split('/').length - (objId ? 4 : 3)];
-        // Select elements with a specific model reference and context of "available-source".
         const selectsRelated = document.querySelectorAll(`[data-model-ref="${modelName}"] [data-context="available-source"]`);
 
         selectsRelated.forEach(function(select) {
@@ -110,7 +115,6 @@
             if (!option) {
                 option = new Option(newRepr, newId);
                 select.options.add(option);
-                // Update SelectBox cache for related fields.
                 if (window.SelectBox !== undefined && !SelectBox.cache[currentSelect.id]) {
                     SelectBox.add_to_cache(select.id, option);
                     SelectBox.redisplay(select.id);
@@ -138,7 +142,6 @@
                     elem.value = newId;
                 }
             }
-            // Trigger a change event to update related links if required.
             $(elem).trigger('change');
         } else {
             const toId = name + "_to";
@@ -170,8 +173,6 @@
         }).trigger('change');
         updateRelatedSelectsOptions(selects[0], win, objId, newRepr, newId);
         selects.next().find('.select2-selection__rendered').each(function() {
-            // The element can have a clear button as a child.
-            // Use the lastChild to modify only the displayed value.
             this.lastChild.textContent = newRepr;
             this.title = newRepr;
         });
@@ -208,7 +209,6 @@
     window.dismissChildPopups = dismissChildPopups;
     window.relatedWindows = relatedWindows;
 
-    // Kept for backward compatibility
     window.showAddAnotherPopup = showRelatedObjectPopup;
     window.dismissAddAnotherPopup = dismissAddRelatedObjectPopup;
 

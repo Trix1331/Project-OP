@@ -1,5 +1,6 @@
 'use strict';
 {
+    // Sidebar Toggle Functionality
     const toggleNavSidebar = document.getElementById('toggle-nav-sidebar');
     if (toggleNavSidebar !== null) {
         const navSidebar = document.getElementById('nav-sidebar');
@@ -23,14 +24,17 @@
         });
     }
 
+    // Sidebar Quick Filter Functionality
     function initSidebarQuickFilter() {
         const options = [];
         const navSidebar = document.getElementById('nav-sidebar');
         if (!navSidebar) {
             return;
         }
+
+        // Collect the filterable options from the sidebar
         navSidebar.querySelectorAll('th[scope=row] a').forEach((container) => {
-            options.push({title: container.innerHTML, node: container});
+            options.push({ title: container.innerHTML, node: container });
         });
 
         function checkValue(event) {
@@ -52,7 +56,7 @@
                         matches = true;
                     }
                 }
-                // show/hide parent <TR>
+                // Show or hide parent <TR> based on the filter match
                 o.node.parentNode.parentNode.style.display = displayValue;
             }
             if (!filterValue || matches) {
@@ -71,9 +75,11 @@
         const storedValue = sessionStorage.getItem('django.admin.navSidebarFilterValue');
         if (storedValue) {
             nav.value = storedValue;
-            checkValue({target: nav, key: ''});
+            checkValue({ target: nav, key: '' });
         }
     }
+
+    // Expose initSidebarQuickFilter to the global scope, in case it's needed elsewhere
     window.initSidebarQuickFilter = initSidebarQuickFilter;
     initSidebarQuickFilter();
 }

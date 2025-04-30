@@ -1,3 +1,4 @@
+/* Загальні стилі */
 select.admin-autocomplete {
     width: 20em;
 }
@@ -276,4 +277,63 @@ select.admin-autocomplete {
 
 .errors .select2-selection {
     border: 1px solid var(--error-fg);
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 768px) {
+    .select2-container--admin-autocomplete .select2-selection--single,
+    .select2-container--admin-autocomplete .select2-selection--multiple {
+        min-height: 40px;
+    }
+
+    .select2-container--admin-autocomplete .select2-selection--single .select2-selection__rendered {
+        line-height: 40px;
+    }
+
+    .select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__rendered {
+        padding: 0 8px 5px 5px;
+    }
+
+    .select2-container--admin-autocomplete .select2-selection--single .select2-selection__arrow {
+        width: 18px;
+        height: 20px;
+    }
+
+    .select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__clear {
+        font-size: 14px;
+    }
+
+    .select2-container--admin-autocomplete .select2-results > .select2-results__options {
+        max-height: 150px;
+    }
+
+    .select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__choice {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .select2-container--admin-autocomplete .select2-selection--single,
+    .select2-container--admin-autocomplete .select2-selection--multiple {
+        min-height: 35px;
+    }
+
+    .select2-container--admin-autocomplete .select2-selection--single .select2-selection__rendered {
+        line-height: 35px;
+    }
+
+    .select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__rendered {
+        padding: 0 5px 5px 5px;
+    }
+
+    .select2-container--admin-autocomplete .select2-selection--single .select2-selection__arrow {
+        width: 16px;
+        height: 18px;
+    }
+
+    .select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__choice {
+        font-size: 12px;
+        margin-right: 3px;
+        margin-top: 3px;
+    }
 }

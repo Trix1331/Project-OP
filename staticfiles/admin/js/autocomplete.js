@@ -15,19 +15,32 @@
                             field_name: element.dataset.fieldName
                         };
                     }
-                }
+                },
+                // Покращення роботи Select2 на мобільних пристроях
+                dropdownAutoWidth: true,
+                width: '100%',
+                minimumResultsForSearch: 10 // Ліміт для пошуку
             });
         });
         return this;
     };
 
     $(function() {
-        // Initialize all autocomplete widgets except the one in the template
-        // form used when a new formset is added.
+        // Ініціалізуємо всі autocomplete віджети, окрім того, який використовується для нових форм
+        // в шаблоні, коли додається новий formset.
         $('.admin-autocomplete').not('[name*=__prefix__]').djangoAdminSelect2();
     });
 
     document.addEventListener('formset:added', (event) => {
+        // Ініціалізація autocomplete для нових елементів форми
         $(event.target).find('.admin-autocomplete').djangoAdminSelect2();
     });
+
+    // Додатково, додаємо обробку подій touch для мобільних пристроїв
+    if ('ontouchstart' in window) {
+        // Підтримка мобільних пристроїв: додатково можна настроїти вибір через touch
+        $(document).on('touchstart', '.select2-container', function() {
+            $(this).find('.select2-selection').trigger('click');
+        });
+    }
 }

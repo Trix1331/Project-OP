@@ -8,8 +8,10 @@
     body {
         font-family: "IBM Plex Mono", monospace;
         background: linear-gradient(180deg, #4A4A4A 0%, #496536 50%, #327803 100%);
+        margin: 0;
+        padding: 0;
     }
-    
+
     body > .container {
         background-color: transparent;
         max-width: 100%;
@@ -34,7 +36,7 @@
         font-weight: bold;
         text-align: center;
     }
-    
+
     .simulation-container {
         display: flex;
         flex-direction: column;
@@ -91,6 +93,8 @@
         align-items: center;
         gap: 10px;
         margin-top: 30px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .submit-button:hover {
@@ -111,13 +115,85 @@
     .progress-fill {
         height: 100%;
         background-color: #2a6d2a;
-        width: 0%; /* Буде встановлено через JavaScript */
+        width: 0%; /* Will be set by JS */
     }
     
     .block-info {
         font-size: 16px;
         color: #666;
         margin-bottom: 10px;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 767px) {
+        .content-container {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .question-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .answer-text {
+            font-size: 14px;
+        }
+
+        .submit-button {
+            font-size: 14px;
+            padding: 10px 20px;
+        }
+
+        .progress-bar {
+            height: 8px;
+        }
+    }
+
+    /* Tablet and small screen styles */
+    @media (max-width: 1024px) and (min-width: 768px) {
+        .content-container {
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .title {
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .question-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .answer-text {
+            font-size: 15px;
+        }
+
+        .submit-button {
+            font-size: 15px;
+            padding: 11px 22px;
+        }
+
+        .progress-bar {
+            height: 9px;
+        }
     }
 </style>
 {% endblock %}

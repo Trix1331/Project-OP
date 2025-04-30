@@ -305,7 +305,6 @@ body.popup .submit-row {
 .submit-row a.closelink:active {
     background: var(--close-button-hover-bg);
     text-decoration: none;
-}
 
 /* CUSTOM FORM FIELDS */
 
@@ -495,4 +494,41 @@ form .related-widget-wrapper ul {
 
 .clearable-file-input input {
     margin-top: 0;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+    .form-row {
+        padding: 8px;
+        font-size: 0.75rem; /* Smaller text for mobile */
+    }
+
+    .form-row label {
+        font-size: 0.75rem; /* Adjust label font size for mobile */
+    }
+
+    .submit-row {
+        padding: 10px;
+        gap: 5px; /* Adjust gap for small screens */
+    }
+
+    .submit-row input, .submit-row a {
+        font-size: 0.875rem; /* Smaller buttons/links */
+    }
+
+    .aligned label {
+        min-width: 140px; /* Reduce label width */
+    }
+
+    .aligned .vLargeTextField, .aligned .vXMLLargeTextField {
+        width: 100%; /* Full width inputs on mobile */
+    }
+
+    .inline-group .tabular tr.add-row td a {
+        font-size: 0.625rem; /* Smaller add-row font size */
+    }
+
+    .clearable-file-input input {
+        font-size: 0.75rem; /* Smaller file input */
+    }
 }

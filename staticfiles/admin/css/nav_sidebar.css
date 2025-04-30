@@ -116,6 +116,7 @@
     max-width: calc(100% - 299px);
 }
 
+/* MOBILE OPTIMIZATION */
 @media (max-width: 767px) {
     #nav-sidebar, #toggle-nav-sidebar {
         display: none;
@@ -124,6 +125,21 @@
     .main > #nav-sidebar + .content,
     .main.shifted > #nav-sidebar + .content {
         max-width: 100%;
+    }
+}
+
+/* TABLET OPTIMIZATION */
+@media (max-width: 1024px) {
+    #nav-sidebar {
+        flex: 0 0 220px;
+    }
+
+    .main > #nav-sidebar + .content {
+        max-width: calc(100% - 220px);
+    }
+
+    .main.shifted > #nav-sidebar + .content {
+        max-width: calc(100% - 220px);
     }
 }
 

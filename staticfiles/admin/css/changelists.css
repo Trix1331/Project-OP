@@ -4,6 +4,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 #changelist .changelist-form-container {
@@ -13,6 +14,7 @@
 
 #changelist table {
     width: 100%;
+    margin-bottom: 15px;
 }
 
 .change-list .hiddenfields { display:none; }
@@ -140,9 +142,9 @@
 }
 
 @media (forced-colors: active) {
-  #changelist-filter {
-      border: 1px solid;
-  }
+    #changelist-filter {
+        border: 1px solid;
+    }
 }
 
 #changelist-filter h2 {
@@ -340,4 +342,72 @@
 
 #changelist .actions .button:focus, #changelist .actions .button:hover {
     border-color: var(--body-quiet-color);
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    #changelist {
+        flex-direction: column;
+    }
+
+    #changelist-filter {
+        flex: 0 0 100%;
+        margin-left: 0;
+    }
+
+    #changelist .changelist-form-container {
+        min-width: 100%;
+    }
+
+    #toolbar {
+        padding: 10px;
+        font-size: 0.75rem;
+    }
+
+    #changelist-filter {
+        order: 2;
+    }
+
+    #changelist-filter h2 {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+
+    #changelist-filter ul {
+        margin: 0;
+        padding: 0 10px;
+    }
+
+    #changelist .toplinks {
+        flex-direction: column;
+    }
+
+    .change-list .toplinks a {
+        font-size: 1rem;
+    }
+
+    #changelist .actions {
+        padding: 10px 5px;
+        font-size: 0.75rem;
+    }
+
+    #changelist .actions select {
+        font-size: 0.75rem;
+        padding: 4px;
+    }
+
+    #changelist .actions .button {
+        font-size: 0.75rem;
+        height: 1.25rem;
+        padding: 4px 6px;
+    }
+
+    #changelist table thead th {
+        font-size: 0.75rem;
+    }
+
+    #changelist table tbody td,
+    #changelist table thead th {
+        padding: 5px;
+    }
 }
