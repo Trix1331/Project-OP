@@ -19,10 +19,10 @@
     }
 
     .content-container {
-        max-width: 100%;
-        margin: 0 auto;
+        max-width: 800px;
+        margin: 90px auto;
         background-color: white;
-        padding: 20px;
+        padding: 40px;
         min-height: calc(100vh - 200px);
         display: flex;
         flex-direction: column;
@@ -30,12 +30,12 @@
 
     .title {
         text-align: left;
-        font-size: 40px;
-        margin-bottom: 20px;
+        font-size: 60px;
+        margin-bottom: 40px;
         color: #000000;
         font-weight: bold;
         line-height: 1.2;
-        margin-left: 10px;
+        margin-left: 50px;
     }
 
     .section-line {
@@ -46,13 +46,13 @@
 
     .authors-section {
         text-align: left;
-        margin-top: 20px;
-        padding-left: 10px;
-        margin-bottom: 20px;
+        margin-top: 40px;
+        padding-left: 45px;
+        margin-bottom: 40px;
     }
 
     .authors-title {
-        font-size: 18px;
+        font-size: 20px;
         color: #2a6d2a;
         margin-bottom: 20px;
         text-align: left;
@@ -60,68 +60,69 @@
 
     .authors-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
         justify-content: center;
     }
 
     .author {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 15px;
         text-align: left;
     }
 
     .author-photo {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         object-fit: cover;
     }
 
     .author-name {
-        font-size: 14px;
+        font-size: 16px;
         color: #333;
     }
 
     .content {
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.6;
         color: #333;
     }
 
     .content p {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
     /* Map section styles */
     .map-section {
-        margin: 20px 0;
+        margin: 40px 0;
     }
 
     .map-title {
         background-color: #3c5a2c;
         color: white;
-        padding: 8px 16px;
-        font-size: 16px;
+        padding: 10px 20px;
+        font-size: 18px;
         font-weight: bold;
-        margin-bottom: 10px;
+        margin-bottom: 0;
         text-transform: uppercase;
     }
+    
 
     #map {
         width: 100%;
-        height: 300px;
+        height: 500px;
         border: 1px solid #ddd;
     }
 
     .map-description {
-        margin-top: 15px;
-        font-size: 14px;
+        margin-top: 20px;
+        font-size: 16px;
         line-height: 1.6;
         text-align: justify;
     }
-
+    /* Закоментовані стилі меню */
     @media screen and (max-width: 768px) {
         .title {
             font-size: 30px;
