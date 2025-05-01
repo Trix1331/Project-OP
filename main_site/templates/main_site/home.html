@@ -31,6 +31,7 @@
         min-height: calc(100vh - 200px);
         display: flex;
         flex-direction: column;
+        box-sizing: border-box;
     }
 
     .title {
@@ -93,6 +94,9 @@
         font-size: 16px;
         line-height: 1.6;
         color: #333;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 10px;
     }
 
     .content p {
@@ -102,6 +106,8 @@
     /* Map section styles */
     .map-section {
         margin: 40px 0;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .map-title {
@@ -126,80 +132,20 @@
         line-height: 1.6;
         text-align: justify;
     }
-    /* Закоментовані стилі меню */
-    /* Додаємо метатег для мобільних пристроїв */
-    @media screen and (max-width: 768px) {
-        .content-container {
-            margin: 40px auto;
-            padding: 20px;
-        }
-        
-        .title {
-            font-size: 30px;
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-
-        .authors-section {
-            padding-left: 20px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .authors-title {
-            font-size: 16px;
-        }
-        
-        .authors-container {
-            grid-template-columns: 1fr;
-        }
-
-        .content p {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        #map {
-            height: 250px;
-        }
-
-        .author-name {
-            font-size: 12px;
-        }
-        
-        .recruitment-section h2 {
-            font-size: 20px;
-        }
-        
-        .recruitment-section h3 {
-            font-size: 16px;
-        }
-        
-        .recruitment-section p, .recruitment-section li {
-            font-size: 14px;
-        }
-        
-        .carousel-link {
-            font-size: 1em;
-            padding: 8px 16px;
-        }
-        
-        .carousel-btn {
-            padding: 5px 10px;
-            font-size: 1.2em;
-        }
-    }
     
     .recruitment-section {
-        max-width: 900px;
+        max-width: 100%;
         margin: 0 auto;
         font-family: "IBM Plex Mono", monospace;
         line-height: 1.6;
+        padding: 0 10px;
+        box-sizing: border-box;
     }
 
     .recruitment-section h2, .recruitment-section h3 {
         color: #2a6d2a;
         margin-top: 1.5em;
+        word-wrap: break-word;
     }
 
     .recruitment-section h3 span {
@@ -209,6 +155,11 @@
     .recruitment-section ul {
         list-style: disc;
         margin-left: 20px;
+        padding-right: 10px;
+    }
+    
+    .recruitment-section li {
+        margin-bottom: 10px;
     }
 
     .carousel-container {
@@ -231,6 +182,9 @@
         min-width: 100%;
         text-align: center;
         padding: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .carousel-link {
@@ -243,6 +197,9 @@
         display: inline-block;
         transition: background 0.3s;
         font-family: "IBM Plex Mono", monospace;
+        text-align: center;
+        word-wrap: break-word;
+        max-width: 90%;
     }
 
     .carousel-link:hover {
@@ -260,6 +217,7 @@
         font-size: 1.5em;
         cursor: pointer;
         border-radius: 50%;
+        z-index: 10;
     }
 
     .carousel-btn.prev {
@@ -272,6 +230,92 @@
 
     .carousel-btn:hover {
         background: #2a6d2a;
+    }
+    
+    /* Mobile-specific styles */
+    @media screen and (max-width: 768px) {
+        .content-container {
+            margin: 20px auto;
+            padding: 15px;
+            width: 95%;
+        }
+        
+        .title {
+            font-size: 30px;
+            margin-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        .authors-section {
+            padding-left: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .authors-title {
+            font-size: 16px;
+        }
+        
+        .authors-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .author-photo {
+            width: 60px;
+            height: 60px;
+        }
+
+        .content p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        #map {
+            height: 250px;
+        }
+
+        .author-name {
+            font-size: 12px;
+        }
+        
+        .recruitment-section {
+            padding: 0 5px;
+        }
+        
+        .recruitment-section h2 {
+            font-size: 18px;
+            margin-top: 1em;
+        }
+        
+        .recruitment-section h3 {
+            font-size: 16px;
+        }
+        
+        .recruitment-section p, .recruitment-section li {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .carousel-container {
+            padding: 10px;
+            margin: 0.5em 0 1em;
+        }
+        
+        .carousel-slide {
+            padding: 10px 0;
+        }
+        
+        .carousel-link {
+            font-size: 0.9em;
+            padding: 8px 16px;
+            max-width: 85%;
+            white-space: normal;
+        }
+        
+        .carousel-btn {
+            padding: 5px 10px;
+            font-size: 1.2em;
+        }
     }
 </style>
 {% endblock %}
@@ -324,6 +368,7 @@
     <div class="content">
         <p>На цьому сайті ви знайдете детальні інструкції щодо процесу вступу до армії, корисні симуляції різних ситуацій, а також можливість залишити свій відгук та пропозиції щодо покращення системи рекрутингу.</p>
     </div>
+
     
     <div class="recruitment-section">
         <h2>Як приєднатися до Сил оборони України добровільно?</h2>
@@ -354,6 +399,7 @@
         </p>
     
         <h3><span>🔍</span> Актуальні ресурси з вакансіями</h3>
+        
     
         <!-- КАРУСЕЛЬ -->
         <div class="carousel-container">
@@ -372,35 +418,36 @@
         </div>
     
         <p>
-        Центри рекрутингу діють у багатьох містах України — це значно полегшує доступ до інформації та можливостей для охочих долучитися до оборони країни. Завдяки зручному формату роботи, кандидат має змогу швидко знайти підрозділ, який відповідає його навичкам і мотивації, та пройти необхідні формальності з мінімальними зусиллями.
-        </p>
-    
-        <h3><span>📘</span> Покрокова інструкція</h3>
-        <p>
-        Окрім корисних ресурсів та платформ для пошуку військових вакансій, ми також підготували <strong>покрокову інструкцію</strong> щодо вступу до української армії. Вона охоплює всі основні етапи:
-        </p>
-        <ul>
-            <li>Оцінка фізичної та психологічної готовності до служби;</li>
-            <li>Відвідування ТЦК та СП;</li>
-            <li>Збір документів;</li>
-            <li>Проходження медичного та професійно-психологічного відбору;</li>
-            <li>Укладання контракту та початок служби.</li>
-        </ul>
-        <p>Щоб не втратити жодного важливого кроку, ми створили детальну сторінку, де зібрана вся необхідна інформація щодо процедури вступу, вимог до кандидатів та особливостей оформлення. Вона стане в нагоді як для тих, хто лише починає свій шлях до війська, так і для тих, хто вже визначився з підрозділом. Шукайте в блоці <strong>«Інструкції»</strong>.</p>
-    
-        <h3><span>🧪</span> Тематичні симуляції</h3>
-        <p>Також на платформі доступні тематичні симуляції, що допомагають краще підготуватися до вступу:</p>
-        <ul>
-            <li><strong>Придатність до військової служби</strong> — дозволяє попередньо оцінити, чи відповідаєте ви базовим критеріям щодо віку, здоров'я та юридичної чистоти, які зазвичай перевіряє військово-лікарська комісія.</li>
-            <li><strong>Медичні вимоги (ВЛК)</strong> — знайомить користувача з типовими медичними критеріями, які враховуються під час проходження військово-лікарської комісії. Ви дізнаєтеся, які стани здоров'я можуть вплинути на рішення щодо вашої придатності, та зможете підготуватися до медогляду більш усвідомлено.</li>
-        </ul>
+            Центри рекрутингу діють у багатьох містах України — це значно полегшує доступ до інформації та можливостей для охочих долучитися до оборони країни. Завдяки зручному формату роботи, кандидат має змогу швидко знайти підрозділ, який відповідає його навичкам і мотивації, та пройти необхідні формальності з мінімальними зусиллями.
+            </p>
         
-        <p>
-        В умовах війни вибір на користь добровільної служби — це не лише прояв особистої мужності, а й реальний внесок у безпеку та майбутнє України. І з такими ініціативами, як Центр рекрутингу, цей шлях стає більш зрозумілим, доступним і підтриманим з боку держави.
-        </p>
+            <h3><span>📘</span> Покрокова інструкція</h3>
+            <p>
+            Окрім корисних ресурсів та платформ для пошуку військових вакансій, ми також підготували <strong>покрокову інструкцію</strong> щодо вступу до української армії. Вона охоплює всі основні етапи:
+            </p>
+            <ul>
+                <li>Оцінка фізичної та психологічної готовності до служби;</li>
+                <li>Відвідування ТЦК та СП;</li>
+                <li>Збір документів;</li>
+                <li>Проходження медичного та професійно-психологічного відбору;</li>
+                <li>Укладання контракту та початок служби.</li>
+            </ul>
+            <p>Щоб не втратити жодного важливого кроку, ми створили детальну сторінку, де зібрана вся необхідна інформація щодо процедури вступу, вимог до кандидатів та особливостей оформлення. Вона стане в нагоді як для тих, хто лише починає свій шлях до війська, так і для тих, хто вже визначився з підрозділом. Шукайте в блоці <strong>«Інструкції»</strong>.</p>
+        
+            <h3><span>🧪</span> Тематичні симуляції</h3>
+            <p>Також на платформі доступні тематичні симуляції, що допомагають краще підготуватися до вступу:</p>
+            <ul>
+                <li><strong>Придатність до військової служби</strong> — дозволяє попередньо оцінити, чи відповідаєте ви базовим критеріям щодо віку, здоров'я та юридичної чистоти, які зазвичай перевіряє військово-лікарська комісія.</li>
+                <li><strong>Медичні вимоги (ВЛК)</strong> — знайомить користувача з типовими медичними критеріями, які враховуються під час проходження військово-лікарської комісії. Ви дізнаєтеся, які стани здоров'я можуть вплинути на рішення щодо вашої придатності, та зможете підготуватися до медогляду більш усвідомлено.</li>
+            </ul>
+            
+            <p>
+            В умовах війни вибір на користь добровільної служби — це не лише прояв особистої мужності, а й реальний внесок у безпеку та майбутнє України. І з такими ініціативами, як Центр рекрутингу, цей шлях стає більш зрозумілим, доступним і підтриманим з боку держави.
+            </p>
+        </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
+    
 
 {% block extra_js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
@@ -461,39 +508,17 @@
             { "latitude": 51.865317000000005, "longitude": 33.47702235000001 }
         ];
 
-        // City names corresponding to the coordinates
-        const cityNames = [
-            "Біла Церква", "Бориспіль", "Бровари", "Буча", "Вінниця",
-            "Дніпро", "Івано-Франківськ", "Кам'янець-Подільський", "Кам'янське", "Київ (Повітрофлотський)",
-            "Київ (Котляревського)", "Ковель", "Конотоп", "Коростень", "Костопіль",
-            "Кременчук", "Кривий Ріг", "Кропивницький", "Лубни", "Луцьк",
-            "Львів (Левицького)", "Львів (Червоної Калини)", "Миргород", "Мукачеве", "Новомосковськ",
-            "Одеса", "Охтирка", "Павлоград", "Покров", "Полтава",
-            "Розсошенці", "Ромни", "Синельникове", "Суми", "Тернопіль",
-            "Ужгород", "Умань", "Хмельницький", "Черкаси", "Чернівці",
-            "Чернігів", "Шепетівка", "Шостка"
-        ];
-
         // Add markers for each location
-        locations.forEach((loc, index) => {
-            // Create marker
+        locations.forEach((loc) => {
             const marker = L.marker([loc.latitude, loc.longitude]).addTo(map);
-
-            // Add popup with city name (if available) or coordinates
-            const cityName = index < cityNames.length ? cityNames[index] : `Точка ${index + 1}`;
-            marker.bindPopup(`<b>${cityName}</b><br>Координати: ${loc.latitude}, ${loc.longitude}`);
         });
 
         // Function to fit the map to show all markers
         function fitAllMarkers() {
-            const bounds = [];
-            locations.forEach(loc => {
-                bounds.push([loc.latitude, loc.longitude]);
-            });
+            const bounds = L.latLngBounds(locations.map(loc => [loc.latitude, loc.longitude]));
             map.fitBounds(bounds);
         }
 
-        // Fit the map to show all markers when loaded
         fitAllMarkers();
     });
 </script>
@@ -506,92 +531,54 @@
         const nextBtn = document.querySelector('.carousel-btn.next');
         const dots = document.querySelectorAll('.carousel-dot');
         let index = 0;
-        let touchStartX = 0;
-        let touchEndX = 0;
-    
+        let autoRotateInterval;
+
         function updateCarousel() {
             track.style.transform = `translateX(-${index * 100}%)`;
-            // Update dots
             dots.forEach((dot, i) => {
-                if (i === index) {
-                    dot.style.backgroundColor = '#3c5a2c';
-                } else {
-                    dot.style.backgroundColor = '#aaa';
-                }
+                dot.style.backgroundColor = i === index ? '#3c5a2c' : '#aaa';
             });
         }
-    
+
+        function startAutoRotate() {
+            autoRotateInterval = setInterval(() => {
+                index = (index + 1) % slides.length;
+                updateCarousel();
+            }, 5000);
+        }
+
+        function stopAutoRotate() {
+            clearInterval(autoRotateInterval);
+        }
+
         prevBtn.addEventListener('click', () => {
             index = (index - 1 + slides.length) % slides.length;
             updateCarousel();
+            stopAutoRotate();
+            startAutoRotate();
         });
-    
+
         nextBtn.addEventListener('click', () => {
             index = (index + 1) % slides.length;
             updateCarousel();
+            stopAutoRotate();
+            startAutoRotate();
         });
-        
-        // Add click events to dots
+
         dots.forEach((dot, i) => {
             dot.addEventListener('click', () => {
                 index = i;
                 updateCarousel();
+                stopAutoRotate();
+                startAutoRotate();
             });
         });
-        
-        // Add swipe functionality for mobile
-        track.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        track.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                // Swipe left - next slide
-                index = (index + 1) % slides.length;
-                updateCarousel();
-            } else if (touchEndX > touchStartX + swipeThreshold) {
-                // Swipe right - previous slide
-                index = (index - 1 + slides.length) % slides.length;
-                updateCarousel();
-            }
-        }
-        
-        // Auto rotate carousel every 5 seconds
-        let autoRotate = setInterval(() => {
-            index = (index + 1) % slides.length;
-            updateCarousel();
-        }, 5000);
-        
-        // Stop auto rotation when user interacts
+
+        startAutoRotate();
+
         const carouselContainer = document.querySelector('.carousel-container');
-        carouselContainer.addEventListener('mouseenter', () => {
-            clearInterval(autoRotate);
-        });
-        
-        carouselContainer.addEventListener('mouseleave', () => {
-            autoRotate = setInterval(() => {
-                index = (index + 1) % slides.length;
-                updateCarousel();
-            }, 5000);
-        });
-        
-        // Handle visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                clearInterval(autoRotate);
-            } else {
-                autoRotate = setInterval(() => {
-                    index = (index + 1) % slides.length;
-                    updateCarousel();
-                }, 5000);
-            }
-        });
+        carouselContainer.addEventListener('mouseenter', stopAutoRotate);
+        carouselContainer.addEventListener('mouseleave', startAutoRotate);
     });
 </script>
 {% endblock %}
