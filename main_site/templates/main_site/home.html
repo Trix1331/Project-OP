@@ -449,136 +449,174 @@
     {% endblock %}
     
 
-{% block extra_js %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize the map centered on Ukraine
-        const map = L.map('map').setView([49.0, 31.0], 6);
+    {% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the map centered on Ukraine
+            const map = L.map('map').setView([49.0, 31.0], 6);
+    
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+    
+            // Coordinates data
+            const locations = [
+                { "latitude": 49.7844093, "longitude": 30.1524094 },
+                { "latitude": 50.35106785, "longitude": 30.949851123118457 },
+                { "latitude": 50.5104532, "longitude": 30.790083894463603 },
+                { "latitude": 50.55047685, "longitude": 30.20973615 },
+                { "latitude": 49.2392809, "longitude": 28.5110617 },
+                { "latitude": 48.4900447, "longitude": 35.0659417 },
+                { "latitude": 48.9254253, "longitude": 24.7238535 },
+                { "latitude": 48.687966, "longitude": 26.601975 },
+                { "latitude": 48.5160799, "longitude": 34.5814766 },
+                { "latitude": 50.4398558, "longitude": 30.4886551 },
+                { "latitude": 50.4518663, "longitude": 30.6209891 },
+                { "latitude": 51.2173793, "longitude": 24.711564 },
+                { "latitude": 51.2449976, "longitude": 33.2197681 },
+                { "latitude": 50.95044685, "longitude": 28.641512928718196 },
+                { "latitude": 50.880134, "longitude": 26.4517079 },
+                { "latitude": 49.0660181, "longitude": 33.42003451116818 },
+                { "latitude": 47.9054987, "longitude": 33.3941281 },
+                { "latitude": 48.5100991, "longitude": 32.2697138 },
+                { "latitude": 50.0156082, "longitude": 33.0010717 },
+                { "latitude": 50.743888749999996, "longitude": 25.32089560714602 },
+                { "latitude": 49.83252415, "longitude": 24.044147848433255 },
+                { "latitude": 49.7896537, "longitude": 24.0552085 },
+                { "latitude": 49.9717829, "longitude": 33.6053907 },
+                { "latitude": 48.44188815, "longitude": 22.718125211636636 },
+                { "latitude": 48.63558655, "longitude": 35.254338074732416 },
+                { "latitude": 46.458713, "longitude": 30.728374 },
+                { "latitude": 50.3059393, "longitude": 34.8929735 },
+                { "latitude": 48.5295566, "longitude": 35.8676282 },
+                { "latitude": 47.6535892, "longitude": 34.114880047178055 },
+                { "latitude": 49.5924524, "longitude": 34.542557738881655 },
+                { "latitude": 49.543056, "longitude": 34.502399 },
+                { "latitude": 50.74655, "longitude": 33.4865951 },
+                { "latitude": 48.3334677, "longitude": 35.5112994 },
+                { "latitude": 50.923856, "longitude": 34.79148 },
+                { "latitude": 49.5498232, "longitude": 25.5942049 },
+                { "latitude": 48.62426295, "longitude": 22.294658391246685 },
+                { "latitude": 48.7327808, "longitude": 30.2043543 },
+                { "latitude": 49.380123, "longitude": 27.618918942896634 },
+                { "latitude": 49.4442069, "longitude": 32.0577722024841 },
+                { "latitude": 48.2837554, "longitude": 25.9325616 },
+                { "latitude": 51.5141197, "longitude": 31.3094031 },
+                { "latitude": 50.196723, "longitude": 27.066056 },
+                { "latitude": 51.865317000000005, "longitude": 33.47702235000001 }
+            ];
+    
+            // Add markers with click-to-show address
+// Add markers with hover-to-show address (for desktop) and click-to-show address (for mobile)
+locations.forEach((loc) => {
+    const marker = L.marker([loc.latitude, loc.longitude]).addTo(map);
 
-        // Add OpenStreetMap tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+    // Функція для отримання адреси
+    function showAddress(lat, lon) {
+        return fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+            .then(res => res.json())
+            .then(data => {
+                return data.display_name || "Адресу не знайдено";
+            })
+            .catch(() => {
+                return "Помилка при отриманні адреси";
+            });
+    }
 
-        // Coordinates data
-        const locations = [
-            { "latitude": 49.7844093, "longitude": 30.1524094 },
-            { "latitude": 50.35106785, "longitude": 30.949851123118457 },
-            { "latitude": 50.5104532, "longitude": 30.790083894463603 },
-            { "latitude": 50.55047685, "longitude": 30.20973615 },
-            { "latitude": 49.2392809, "longitude": 28.5110617 },
-            { "latitude": 48.4900447, "longitude": 35.0659417 },
-            { "latitude": 48.9254253, "longitude": 24.7238535 },
-            { "latitude": 48.687966, "longitude": 26.601975 },
-            { "latitude": 48.5160799, "longitude": 34.5814766 },
-            { "latitude": 50.4398558, "longitude": 30.4886551 },
-            { "latitude": 50.4518663, "longitude": 30.6209891 },
-            { "latitude": 51.2173793, "longitude": 24.711564 },
-            { "latitude": 51.2449976, "longitude": 33.2197681 },
-            { "latitude": 50.95044685, "longitude": 28.641512928718196 },
-            { "latitude": 50.880134, "longitude": 26.4517079 },
-            { "latitude": 49.0660181, "longitude": 33.42003451116818 },
-            { "latitude": 47.9054987, "longitude": 33.3941281 },
-            { "latitude": 48.5100991, "longitude": 32.2697138 },
-            { "latitude": 50.0156082, "longitude": 33.0010717 },
-            { "latitude": 50.743888749999996, "longitude": 25.32089560714602 },
-            { "latitude": 49.83252415, "longitude": 24.044147848433255 },
-            { "latitude": 49.7896537, "longitude": 24.0552085 },
-            { "latitude": 49.9717829, "longitude": 33.6053907 },
-            { "latitude": 48.44188815, "longitude": 22.718125211636636 },
-            { "latitude": 48.63558655, "longitude": 35.254338074732416 },
-            { "latitude": 46.458713, "longitude": 30.728374 },
-            { "latitude": 50.3059393, "longitude": 34.8929735 },
-            { "latitude": 48.5295566, "longitude": 35.8676282 },
-            { "latitude": 47.6535892, "longitude": 34.114880047178055 },
-            { "latitude": 49.5924524, "longitude": 34.542557738881655 },
-            { "latitude": 49.543056, "longitude": 34.502399 },
-            { "latitude": 50.74655, "longitude": 33.4865951 },
-            { "latitude": 48.3334677, "longitude": 35.5112994 },
-            { "latitude": 50.923856, "longitude": 34.79148 },
-            { "latitude": 49.5498232, "longitude": 25.5942049 },
-            { "latitude": 48.62426295, "longitude": 22.294658391246685 },
-            { "latitude": 48.7327808, "longitude": 30.2043543 },
-            { "latitude": 49.380123, "longitude": 27.618918942896634 },
-            { "latitude": 49.4442069, "longitude": 32.0577722024841 },
-            { "latitude": 48.2837554, "longitude": 25.9325616 },
-            { "latitude": 51.5141197, "longitude": 31.3094031 },
-            { "latitude": 50.196723, "longitude": 27.066056 },
-            { "latitude": 51.865317000000005, "longitude": 33.47702235000001 }
-        ];
+    // Наведення курсора (для десктопу)
+    marker.on('mouseover', function() {
+        if (!L.Browser.mobile) {  // Перевірка, чи не мобільний пристрій
+            showAddress(loc.latitude, loc.longitude)
+                .then(address => {
+                    marker.bindTooltip(address, { permanent: false, direction: 'top' }).openTooltip();
+                });
+        }
+    });
 
-        // Add markers for each location
-        locations.forEach((loc) => {
-            const marker = L.marker([loc.latitude, loc.longitude]).addTo(map);
-        });
+    marker.on('mouseout', function() {
+        if (!L.Browser.mobile) {  // Перевірка, чи не мобільний пристрій
+            marker.closeTooltip();
+        }
+    });
 
-        // Function to fit the map to show all markers
-        function fitAllMarkers() {
+    // Клік (для мобільних пристроїв)
+    marker.on('click', function() {
+        if (L.Browser.mobile) {  // Для мобільних пристроїв
+            showAddress(loc.latitude, loc.longitude)
+                .then(address => {
+                    marker.bindPopup(address).openPopup();
+                });
+        }
+    });
+});
+
+
+    
+            // Fit map to all markers
             const bounds = L.latLngBounds(locations.map(loc => [loc.latitude, loc.longitude]));
             map.fitBounds(bounds);
-        }
-
-        fitAllMarkers();
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const track = document.querySelector('.carousel-track');
-        const slides = document.querySelectorAll('.carousel-slide');
-        const prevBtn = document.querySelector('.carousel-btn.prev');
-        const nextBtn = document.querySelector('.carousel-btn.next');
-        const dots = document.querySelectorAll('.carousel-dot');
-        let index = 0;
-        let autoRotateInterval;
-
-        function updateCarousel() {
-            track.style.transform = `translateX(-${index * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.style.backgroundColor = i === index ? '#3c5a2c' : '#aaa';
-            });
-        }
-
-        function startAutoRotate() {
-            autoRotateInterval = setInterval(() => {
-                index = (index + 1) % slides.length;
-                updateCarousel();
-            }, 5000);
-        }
-
-        function stopAutoRotate() {
-            clearInterval(autoRotateInterval);
-        }
-
-        prevBtn.addEventListener('click', () => {
-            index = (index - 1 + slides.length) % slides.length;
-            updateCarousel();
-            stopAutoRotate();
-            startAutoRotate();
         });
-
-        nextBtn.addEventListener('click', () => {
-            index = (index + 1) % slides.length;
-            updateCarousel();
-            stopAutoRotate();
-            startAutoRotate();
-        });
-
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                index = i;
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            const dots = document.querySelectorAll('.carousel-dot');
+            let index = 0;
+            let autoRotateInterval;
+    
+            function updateCarousel() {
+                track.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.style.backgroundColor = i === index ? '#3c5a2c' : '#aaa';
+                });
+            }
+    
+            function startAutoRotate() {
+                autoRotateInterval = setInterval(() => {
+                    index = (index + 1) % slides.length;
+                    updateCarousel();
+                }, 5000);
+            }
+    
+            function stopAutoRotate() {
+                clearInterval(autoRotateInterval);
+            }
+    
+            prevBtn.addEventListener('click', () => {
+                index = (index - 1 + slides.length) % slides.length;
                 updateCarousel();
                 stopAutoRotate();
                 startAutoRotate();
             });
+    
+            nextBtn.addEventListener('click', () => {
+                index = (index + 1) % slides.length;
+                updateCarousel();
+                stopAutoRotate();
+                startAutoRotate();
+            });
+    
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    index = i;
+                    updateCarousel();
+                    stopAutoRotate();
+                    startAutoRotate();
+                });
+            });
+    
+            startAutoRotate();
+    
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', stopAutoRotate);
+            carouselContainer.addEventListener('mouseleave', startAutoRotate);
         });
-
-        startAutoRotate();
-
-        const carouselContainer = document.querySelector('.carousel-container');
-        carouselContainer.addEventListener('mouseenter', stopAutoRotate);
-        carouselContainer.addEventListener('mouseleave', startAutoRotate);
-    });
-</script>
-{% endblock %}
+    </script>
+    {% endblock %}
+    
