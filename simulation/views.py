@@ -7,89 +7,120 @@ import uuid
 SIMULATION_BLOCKS = [
     {
         "id": 1,
-        "title": "Основні вимоги",
-        "description": "Перевірка базових вимог для військової служби",
+        "title": "Придатність до військової служби",
+        "description": "Перевірка базових законодавчих підстав для мобілізації",
         "questions": [
-            {
-                "id": 1,
-                "text": "Яким є мінімальний вік для призову на строкову військову службу в Україні?",
-                "score": 2,
-                "answers": [
-                    {"id": 1, "text": "16 років", "is_correct": False},
-                    {"id": 2, "text": "18 років", "is_correct": True},
-                    {"id": 3, "text": "20 років", "is_correct": False},
-                    {"id": 4, "text": "21 рік", "is_correct": False}
-                ]
-            },
-            {
-                "id": 2,
-                "text": "Який документ є основним при призові на військову службу?",
-                "score": 1,
-                "answers": [
-                    {"id": 1, "text": "Паспорт", "is_correct": False},
-                    {"id": 2, "text": "Військовий квиток", "is_correct": False},
-                    {"id": 3, "text": "Повістка з військкомату", "is_correct": True},
-                    {"id": 4, "text": "Медична довідка", "is_correct": False}
-                ]
-            }
+            {"id": 1, "text": "Скільки вам років?", "score": 1, "answers": [
+                {"id": 1, "text": "До 25 років", "is_correct": True},
+                {"id": 2, "text": "Від 25 до 60 років", "is_correct": True},
+                {"id": 3, "text": "Більше 60 років", "is_correct": False}
+            ]},
+            {"id": 2, "text": "Чи маєте ви офіційну інвалідність?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": False},
+                {"id": 2, "text": "Ні", "is_correct": True}
+            ]},
+            {"id": 3, "text": "Чи маєте трьох або більше дітей до 18 років?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": False},
+                {"id": 2, "text": "Ні", "is_correct": True}
+            ]},
+            {"id": 4, "text": "Чи є у вас опікувальні обов'язки над особами з інвалідністю?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": False},
+                {"id": 2, "text": "Ні", "is_correct": True}
+            ]},
+            {"id": 5, "text": "Чи ви є студентом денної форми?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": False},
+                {"id": 2, "text": "Ні", "is_correct": True}
+            ]},
+            {"id": 6, "text": "Чи вас бронює підприємство?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": False},
+                {"id": 2, "text": "Ні", "is_correct": True}
+            ]},
+            {"id": 7, "text": "Чи є у вас судимість?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": False},
+                {"id": 2, "text": "Ні", "is_correct": True}
+            ]},
+            {"id": 8, "text": "Чи маєте посвідку про непридатність?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": False},
+                {"id": 2, "text": "Ні", "is_correct": True}
+            ]}
         ]
     },
     {
         "id": 2,
-        "title": "Медичні вимоги",
-        "description": "Перевірка медичних критеріїв для служби",
+        "title": "Медичні вимоги (ВЛК)",
+        "description": "Симуляція висновку військово-лікарської комісії",
         "questions": [
-            {
-                "id": 3,
-                "text": "Яка категорія придатності дозволяє служити в бойових частинах?",
-                "score": 2,
-                "answers": [
-                    {"id": 1, "text": "Категорія А", "is_correct": True},
-                    {"id": 2, "text": "Категорія Б", "is_correct": False},
-                    {"id": 3, "text": "Категорія В", "is_correct": False},
-                    {"id": 4, "text": "Категорія Г", "is_correct": False}
-                ]
-            },
-            {
-                "id": 4,
-                "text": "Які медичні показники перевіряються в першу чергу при медогляді?",
-                "score": 1,
-                "answers": [
-                    {"id": 1, "text": "Артеріальний тиск та пульс", "is_correct": True},
-                    {"id": 2, "text": "Вага та зріст", "is_correct": False},
-                    {"id": 3, "text": "Стан зубів", "is_correct": False},
-                    {"id": 4, "text": "Гострота зору", "is_correct": False}
-                ]
-            }
+            {"id": 9, "text": "Психічний стан?", "score": 1, "answers": [
+                {"id": 1, "text": "Нормальний", "is_correct": True},
+                {"id": 2, "text": "Діагностовані розлади", "is_correct": False}
+            ]},
+            {"id": 10, "text": "Стан серцево-судинної системи?", "score": 1, "answers": [
+                {"id": 1, "text": "Нормальний", "is_correct": True},
+                {"id": 2, "text": "Є захворювання", "is_correct": False}
+            ]},
+            {"id": 11, "text": "Стан зору?", "score": 1, "answers": [
+                {"id": 1, "text": "Добрий", "is_correct": True},
+                {"id": 2, "text": "Поганий", "is_correct": False}
+            ]},
+            {"id": 12, "text": "Чи є у вас хронічні захворювання?", "score": 1, "answers": [
+                {"id": 1, "text": "Ні", "is_correct": True},
+                {"id": 2, "text": "Так", "is_correct": False}
+            ]},
+            {"id": 13, "text": "Стан опорно-рухового апарату?", "score": 1, "answers": [
+                {"id": 1, "text": "Без обмежень", "is_correct": True},
+                {"id": 2, "text": "Є порушення", "is_correct": False}
+            ]},
+            {"id": 14, "text": "Чи маєте ви діабет?", "score": 1, "answers": [
+                {"id": 1, "text": "Ні", "is_correct": True},
+                {"id": 2, "text": "Так", "is_correct": False}
+            ]},
+            {"id": 15, "text": "Чи маєте алергії, які заважають службі?", "score": 1, "answers": [
+                {"id": 1, "text": "Ні", "is_correct": True},
+                {"id": 2, "text": "Так", "is_correct": False}
+            ]},
+            {"id": 16, "text": "Стан слуху?", "score": 1, "answers": [{"id": 1, "text": "Нормальний", "is_correct": True},
+                {"id": 2, "text": "Поганий", "is_correct": False}
+            ]}
         ]
     },
     {
         "id": 3,
-        "title": "Тактична підготовка",
-        "description": "Оцінка знань базової тактики",
+        "title": "Роль у ЗСУ",
+        "description": "Визначення, де ви принесете найбільшу користь",
         "questions": [
-            {
-                "id": 5,
-                "text": "Яка відстань вважається ефективною для стрільби з автомата АК-74?",
-                "score": 2,
-                "answers": [
-                    {"id": 1, "text": "До 100 метрів", "is_correct": False},
-                    {"id": 2, "text": "До 300 метрів", "is_correct": False},
-                    {"id": 3, "text": "До 500 метрів", "is_correct": True},
-                    {"id": 4, "text": "До 1000 метрів", "is_correct": False}
-                ]
-            },
-            {
-                "id": 6,
-                "text": "Який порядок дій при потраплянні в засідку?",
-                "score": 3,
-                "answers": [
-                    {"id": 1, "text": "Залягти і чекати підкріплення", "is_correct": False},
-                    {"id": 2, "text": "Відкрити вогонь у відповідь та відступити", "is_correct": False},
-                    {"id": 3, "text": "Відкрити інтенсивний вогонь та атакувати в напрямку засідки", "is_correct": True},
-                    {"id": 4, "text": "Розбігтися в різні сторони", "is_correct": False}
-                ]
-            }
+            {"id": 17, "text": "Ваш фізичний стан?", "score": 1, "answers": [
+                {"id": 1, "text": "Відмінний", "is_correct": True},
+                {"id": 2, "text": "Середній", "is_correct": True},
+                {"id": 3, "text": "Низький", "is_correct": False}
+            ]},
+            {"id": 18, "text": "Ваш рівень технічної грамотності?", "score": 1, "answers": [
+                {"id": 1, "text": "Високий", "is_correct": True},
+                {"id": 2, "text": "Низький", "is_correct": False}
+            ]},
+            {"id": 19, "text": "Ваша стресостійкість?", "score": 1, "answers": [
+                {"id": 1, "text": "Висока", "is_correct": True},
+                {"id": 2, "text": "Низька", "is_correct": False}
+            ]},
+            {"id": 20, "text": "Чи маєте бойовий досвід?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": True},
+                {"id": 2, "text": "Ні", "is_correct": False}
+            ]},
+            {"id": 21, "text": "Чи маєте медичну підготовку?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": True},
+                {"id": 2, "text": "Ні", "is_correct": False}
+            ]},
+            {"id": 22, "text": "Вмієте працювати в команді?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": True},
+                {"id": 2, "text": "Ні", "is_correct": False}
+            ]},
+            {"id": 23, "text": "Ваша витривалість у польових умовах?", "score": 1, "answers": [
+                {"id": 1, "text": "Висока", "is_correct": True},
+                {"id": 2, "text": "Сумнівна", "is_correct": False}
+            ]},
+            {"id": 24, "text": "Чи готові ви до служби на передовій?", "score": 1, "answers": [
+                {"id": 1, "text": "Так", "is_correct": True},
+                {"id": 2, "text": "Ні", "is_correct": False}
+            ]}
         ]
     }
 ]
@@ -133,15 +164,32 @@ def calculate_total_score(user_answers, block_id):
                     break
     return total_score, max_score
 
-def get_result_text(percentage):
-    if percentage >= 90:
-        return "Відмінний результат! Ви дуже добре підготовлені до військової служби."
-    elif percentage >= 70:
-        return "Хороший результат! Ви маєте добре розуміння військової справи."
-    elif percentage >= 50:
-        return "Задовільний результат. Є місце для вдосконалення."
-    else:
-        return "Вам варто краще ознайомитися з основами військової підготовки."
+def get_result_text(score, simulation_id):
+    if simulation_id == 1:
+        if score == 3:
+            return "Ви підлягаєте мобілізації за чинним законодавством."
+        elif score == 2:
+            return "Є нюанси, але в цілому вас можуть мобілізувати. Рекомендується уточнити в ТЦК."
+        else:
+            return "Ви не підлягаєте мобілізації відповідно до чинного законодавства."
+
+    elif simulation_id == 2:
+        if score == 3:
+            return "Ваш медичний стан дозволяє проходити військову службу."
+        elif score == 2:
+            return "Необхідне дообстеження або повторне проходження ВЛК."
+        else:
+            return "Медичні показання можуть стати підставою для непридатності."
+
+    elif simulation_id == 3:
+        if score == 3:
+            return "Ви ідеально підходите для служби в бойових або технічних підрозділах."
+        elif score == 2:
+            return "Ви можете бути ефективним у тилових чи допоміжних службах."
+        else:
+            return "Ймовірно, вам краще реалізовуватись у цивільних ініціативах на підтримку армії."
+
+    return "Результат недоступний для цієї симуляції."
 
 # ==== VIEWS ====
 
@@ -205,19 +253,14 @@ def show_result(request):
 
     simulation = request.session['simulation']
     block_id = simulation.get('selected_block_id')
+    answers = simulation.get('answers', {})
 
-    total_score, max_score = calculate_total_score(simulation['answers'], block_id)
-    percentage = (total_score / max_score) * 100 if max_score else 0
-
-    simulation['end_time'] = timezone.now().isoformat()
-    simulation['total_score'] = total_score
-    simulation['max_score'] = max_score
-    request.session['simulation'] = simulation
+    score, max_score = calculate_total_score(answers, block_id)
+    result_text = get_result_text(score, block_id)
 
     context = {
-        'total_score': total_score,
+        'score': score,
         'max_score': max_score,
-        'percentage': percentage,
-        'result_text': get_result_text(percentage)
+        'result_text': result_text
     }
     return render(request, 'simulation/results.html', context)
