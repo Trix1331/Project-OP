@@ -3,6 +3,10 @@
 
 {% block title %}Головна - Дослідження рекрутингу в українську армію{% endblock %}
 
+{% block head_meta %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
 <style>
@@ -123,18 +127,35 @@
         text-align: justify;
     }
     /* Закоментовані стилі меню */
+    /* Додаємо метатег для мобільних пристроїв */
     @media screen and (max-width: 768px) {
+        .content-container {
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
         .title {
             font-size: 30px;
             margin-left: 20px;
+            margin-bottom: 20px;
         }
 
+        .authors-section {
+            padding-left: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
         .authors-title {
             font-size: 16px;
         }
+        
+        .authors-container {
+            grid-template-columns: 1fr;
+        }
 
         .content p {
-            font-size: 12px;
+            font-size: 14px;
             margin-bottom: 10px;
         }
 
@@ -144,6 +165,28 @@
 
         .author-name {
             font-size: 12px;
+        }
+        
+        .recruitment-section h2 {
+            font-size: 20px;
+        }
+        
+        .recruitment-section h3 {
+            font-size: 16px;
+        }
+        
+        .recruitment-section p, .recruitment-section li {
+            font-size: 14px;
+        }
+        
+        .carousel-link {
+            font-size: 1em;
+            padding: 8px 16px;
+        }
+        
+        .carousel-btn {
+            padding: 5px 10px;
+            font-size: 1.2em;
         }
     }
     
@@ -175,6 +218,8 @@
         border-radius: 12px;
         background: #f3f7ff;
         padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .carousel-track {
@@ -317,6 +362,11 @@
                 <div class="carousel-slide"><a class="carousel-link" href="https://lobbyx.army" target="_blank">🧭 LobbyX.army – вибір підрозділу</a></div>
                 <div class="carousel-slide"><a class="carousel-link" href="https://army.gov.ua/?sphere=it" target="_blank">💻 IT-вакансії на army.gov.ua</a></div>
             </div>
+            <div class="carousel-indicators" style="text-align: center; margin-top: 15px;">
+                <span class="carousel-dot active" data-index="0" style="height: 10px; width: 10px; background-color: #3c5a2c; border-radius: 50%; display: inline-block; margin: 0 5px; cursor: pointer;"></span>
+                <span class="carousel-dot" data-index="1" style="height: 10px; width: 10px; background-color: #aaa; border-radius: 50%; display: inline-block; margin: 0 5px; cursor: pointer;"></span>
+                <span class="carousel-dot" data-index="2" style="height: 10px; width: 10px; background-color: #aaa; border-radius: 50%; display: inline-block; margin: 0 5px; cursor: pointer;"></span>
+            </div>
             <button class="carousel-btn prev">‹</button>
             <button class="carousel-btn next">›</button>
         </div>
@@ -454,10 +504,21 @@
         const slides = document.querySelectorAll('.carousel-slide');
         const prevBtn = document.querySelector('.carousel-btn.prev');
         const nextBtn = document.querySelector('.carousel-btn.next');
+        const dots = document.querySelectorAll('.carousel-dot');
         let index = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
     
         function updateCarousel() {
             track.style.transform = `translateX(-${index * 100}%)`;
+            // Update dots
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.style.backgroundColor = '#3c5a2c';
+                } else {
+                    dot.style.backgroundColor = '#aaa';
+                }
+            });
         }
     
         prevBtn.addEventListener('click', () => {
@@ -468,6 +529,68 @@
         nextBtn.addEventListener('click', () => {
             index = (index + 1) % slides.length;
             updateCarousel();
+        });
+        
+        // Add click events to dots
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                index = i;
+                updateCarousel();
+            });
+        });
+        
+        // Add swipe functionality for mobile
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe left - next slide
+                index = (index + 1) % slides.length;
+                updateCarousel();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe right - previous slide
+                index = (index - 1 + slides.length) % slides.length;
+                updateCarousel();
+            }
+        }
+        
+        // Auto rotate carousel every 5 seconds
+        let autoRotate = setInterval(() => {
+            index = (index + 1) % slides.length;
+            updateCarousel();
+        }, 5000);
+        
+        // Stop auto rotation when user interacts
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoRotate);
+        });
+        
+        carouselContainer.addEventListener('mouseleave', () => {
+            autoRotate = setInterval(() => {
+                index = (index + 1) % slides.length;
+                updateCarousel();
+            }, 5000);
+        });
+        
+        // Handle visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(autoRotate);
+            } else {
+                autoRotate = setInterval(() => {
+                    index = (index + 1) % slides.length;
+                    updateCarousel();
+                }, 5000);
+            }
         });
     });
 </script>
